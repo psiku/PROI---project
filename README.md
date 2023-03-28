@@ -1,5 +1,13 @@
 # Laboratoria PROI23L Projekt zespołowy
 
+## Team
+
+Our members are:
+
+-   Grzegorz Statkiewicz
+-   Bartosz Psik
+-   Wiktor Kruszewicz
+
 ## Idea
 
 The project involves the development of an algorithmic system for trading on the stock market.

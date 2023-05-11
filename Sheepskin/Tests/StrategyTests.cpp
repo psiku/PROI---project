@@ -3,8 +3,8 @@
 //
 
 #include <gtest/gtest.h>
-#include "../Library/Strategies/FirstStrategy/FirstStrategy.h"
-#include "../Library/Data/Instrument/Stock/Stock.h"
+#include "Strategies/FirstStrategy/FirstStrategy.h"
+#include "Data/Instrument/Stock/Stock.h"
 #include "Strategies/SecondStrategy/SecondStrategy.h"
 
 TEST(StrategyTest, FirstStrategyTest) {

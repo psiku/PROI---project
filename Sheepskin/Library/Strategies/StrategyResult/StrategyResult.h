@@ -8,11 +8,11 @@
 #include <string>
 
 class StrategyResult {
-    std::string id;
-    unsigned short decision;
-    int volume;
+private:
+    double rise_chance;
+    double fall_change;
 public:
-    StrategyResult(std::string id, unsigned short decision, int volume);
+    StrategyResult(double rise_chance, double fall_chance);
 };
 
 

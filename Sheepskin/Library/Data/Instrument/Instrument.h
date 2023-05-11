@@ -5,7 +5,7 @@
 #ifndef SHEEPSKIN_INSTRUMENT_H
 #define SHEEPSKIN_INSTRUMENT_H
 
-#include "../Stock/Stock.h"
+#include "../../../ConsoleApp/Data/Stock/Stock.h"
 
 #include <string>
 #include <vector>

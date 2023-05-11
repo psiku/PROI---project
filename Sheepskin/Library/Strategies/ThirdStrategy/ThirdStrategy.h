@@ -6,7 +6,7 @@
 #define SHEEPSKIN_THIRDSTRATEGY_H
 
 
-#include "../Strategy/Strategy.h"
+#include "Strategies/Strategy/Strategy.h"
 
 class ThirdStrategy: public Strategy {
 

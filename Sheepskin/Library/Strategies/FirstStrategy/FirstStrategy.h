@@ -6,7 +6,7 @@
 #define SHEEPSKIN_FIRSTSTRATEGY_H
 
 
-#include "../Strategy/Strategy.h"
+#include "Strategies/Strategy/Strategy.h"
 
 class FirstStrategy: public Strategy {
 

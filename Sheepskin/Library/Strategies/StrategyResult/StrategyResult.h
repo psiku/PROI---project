@@ -10,7 +10,7 @@
 class StrategyResult {
 private:
     double rise_chance;
-    double fall_change;
+    double fall_chance;
 public:
     StrategyResult(double rise_chance, double fall_chance);
 };

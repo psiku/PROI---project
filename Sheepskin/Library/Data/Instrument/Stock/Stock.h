@@ -10,7 +10,8 @@
 
 
 class Stock: public Instrument {
-
+public:
+        explicit Stock(std::string id);
 };
 
 

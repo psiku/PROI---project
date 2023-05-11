@@ -10,8 +10,8 @@
 
 class FirstStrategy: public Strategy {
 public:
-    FirstStrategy(Instrument instrument);
-    StrategyResult eval();
+    explicit FirstStrategy(Instrument instrument);
+    StrategyResult eval() override;
 };
 
 

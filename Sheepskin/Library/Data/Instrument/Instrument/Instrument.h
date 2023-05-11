@@ -15,7 +15,7 @@
 class Instrument {
 private:
     std::string id;
-    std::vector<Record> stocks;
+    std::vector<Record> records;
 public:
     Instrument(std::string id);
 };

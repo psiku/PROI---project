@@ -3,3 +3,7 @@
 //
 
 #include "Instrument.h"
+
+#include <utility>
+
+Instrument::Instrument(std::string id): id(std::move(id)) {};

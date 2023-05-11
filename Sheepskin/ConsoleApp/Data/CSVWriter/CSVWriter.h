@@ -12,7 +12,7 @@ template <class T>
 class CSVWriter {
 private:
     std::string filename;
-//    std::vector<T> decisions;
+    std::vector<T> decisions;
 public:
     CSVWriter(std::string filename);
     void write();

@@ -13,6 +13,9 @@ private:
     double fall_chance;
 public:
     StrategyResult(double rise_chance, double fall_chance);
+    double getRiseChance() const;
+    double getFallChance() const;
+
 };
 
 

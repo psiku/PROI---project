@@ -3,3 +3,5 @@
 //
 
 #include "Strategy.h"
+
+Strategy::Strategy(Instrument instrument): instrument(instrument) {}

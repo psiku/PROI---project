@@ -8,14 +8,14 @@
 
 #include <string>
 #include <vector>
-#include "../Stock/Stock.h"
+#include "../../Record/Record.h"
 
-#include "../Stock/Stock.h"
+#include "../../Record/Record.h"
 
 class Instrument {
 private:
     std::string id;
-    std::vector<Stock> stocks;
+    std::vector<Record> stocks;
 public:
     Instrument(std::string id);
 };

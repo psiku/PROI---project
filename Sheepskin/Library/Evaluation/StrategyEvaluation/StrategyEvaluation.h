@@ -6,11 +6,11 @@
 #define SHEEPSKIN_STRATEGYEVALUATION_H
 
 
-#include "Strategies/StrategyResult/StrategyResult.h"
+#include "../../Strategies/StrategyResult/StrategyResult.h"
 
 class StrategyEvaluation {
 public:
-    static void eval(StrategyResult result);
+    static void StrategyResult(StrategyResult results[]);
 };
 
 

@@ -7,13 +7,13 @@
 
 #include <ctime>
 
-class Stock {
+class Record {
 private:
     time_t date;
     long double value;
     int volume;
 public:
-    Stock(time_t date, long double value, int volume);
+    Record(time_t date, long double value, int volume);
 };
 
 

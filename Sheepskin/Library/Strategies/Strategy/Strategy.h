@@ -6,7 +6,7 @@
 #define SHEEPSKIN_STRATEGY_H
 
 
-#include "Data/Instrument/Instrument/Instrument.h"
+#include "../../Data/Instrument/Instrument/Instrument.h"
 #include "../StrategyResult/StrategyResult.h"
 
 class Strategy {

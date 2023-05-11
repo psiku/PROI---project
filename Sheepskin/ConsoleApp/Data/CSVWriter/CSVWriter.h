@@ -7,12 +7,12 @@
 
 #include <string>
 #include <vector>
-#include "Strategies/StrategyResult/StrategyResult.h"
 
+template <class T>
 class CSVWriter {
 private:
     std::string filename;
-    std::vector<StrategyResult> decisions;
+//    std::vector<T> decisions;
 public:
     CSVWriter(std::string filename);
     void write();

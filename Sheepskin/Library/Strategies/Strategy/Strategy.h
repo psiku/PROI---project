@@ -6,8 +6,15 @@
 #define SHEEPSKIN_STRATEGY_H
 
 
-class Strategy {
+#include "../../Data/Instrument/Instrument.h"
+#include "../StrategyResult/StrategyResult.h"
 
+class Strategy {
+private:
+    Instrument instrument;
+public:
+    Strategy(Instrument instrument);
+    virtual StrategyResult eval() = 0;
 };
 
 

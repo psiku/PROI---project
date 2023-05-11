@@ -6,10 +6,12 @@
 #define SHEEPSKIN_FIRSTSTRATEGY_H
 
 
-#include "Strategies/Strategy/Strategy.h"
+#include "../Strategy/Strategy.h"
 
 class FirstStrategy: public Strategy {
-
+public:
+    FirstStrategy(Instrument instrument);
+    StrategyResult eval();
 };
 
 

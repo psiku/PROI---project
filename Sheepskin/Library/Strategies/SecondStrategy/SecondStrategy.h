@@ -6,10 +6,12 @@
 #define SHEEPSKIN_SECONDSTRATEGY_H
 
 
-#include "Strategies/Strategy/Strategy.h"
+#include "../Strategy/Strategy.h"
 
 class SecondStrategy: public Strategy  {
-
+public:
+    SecondStrategy();
+    StrategyResult eval();
 };
 
 

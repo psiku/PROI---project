@@ -6,7 +6,9 @@
 #define SHEEPSKIN_CRYPTOCURRENCY_H
 
 
-class CryptoCurrency {
+#include "../Instrument/Instrument.h"
+
+class CryptoCurrency: public Instrument {
 
 };
 

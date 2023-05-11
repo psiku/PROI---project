@@ -2,8 +2,10 @@
 // Created by Wiktor Kruszewicz on 11/05/2023.
 //
 
-#ifndef SHEEPSKIN_STOCK_H
-#define SHEEPSKIN_STOCK_H
+
+#ifndef SHEEPSKIN_RECORD_H
+#define SHEEPSKIN_RECORD_H
+
 
 #include <ctime>
 
@@ -17,4 +19,5 @@ public:
 };
 
 
-#endif //SHEEPSKIN_STOCK_H
+
+#endif //SHEEPSKIN_RECORD_H

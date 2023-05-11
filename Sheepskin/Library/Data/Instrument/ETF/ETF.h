@@ -6,7 +6,9 @@
 #define SHEEPSKIN_ETF_H
 
 
-class ETF {
+#include "../Instrument/Instrument.h"
+
+class ETF: public Instrument {
 
 };
 

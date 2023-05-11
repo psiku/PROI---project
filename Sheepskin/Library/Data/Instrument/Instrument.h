@@ -5,10 +5,10 @@
 #ifndef SHEEPSKIN_INSTRUMENT_H
 #define SHEEPSKIN_INSTRUMENT_H
 
-#include "../../../ConsoleApp/Data/Stock/Stock.h"
 
 #include <string>
 #include <vector>
+#include "../Stock/Stock.h"
 
 class Instrument {
 private:

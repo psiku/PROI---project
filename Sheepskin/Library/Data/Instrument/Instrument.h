@@ -8,6 +8,7 @@
 
 #include <string>
 #include <vector>
+#include "../Stock/Stock.h"
 
 #include "../Stock/Stock.h"
 

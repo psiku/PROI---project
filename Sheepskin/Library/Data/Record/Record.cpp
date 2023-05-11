@@ -3,3 +3,5 @@
 //
 
 #include "Record.h"
+
+Record::Record(time_t date, long double value, int volume): date(date), value(value), volume(volume) {};

@@ -10,17 +10,17 @@
 #include <sstream>
 #include <iomanip>
 
-CSVResult::CSVResult(std::vector<row> data) {
-    CSVResult::data = data;
-};
+template <class ...Types>
+CSVResult<Types...>::CSVResult(std::vector<std::tuple<Types...>> data): data(data) {};
 
-row CSVResult::readline() {
+template <class ...Types>
+std::tuple<Types...> CSVResult<Types...>::readline() {
 //    if(index != data.size())
         return data[index++];
 
 }
 
-//template <class T>
+//template <class ...Types>
 //T CSVResult<T>::map_to_obj() {
 //    std::vector<Record> records;
 //    for(auto row:data) {

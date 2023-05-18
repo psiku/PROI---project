@@ -9,12 +9,15 @@
 #include "Data/Instrument/Instrument/Instrument.h"
 #include "../CSVResult/CSVResult.h"
 
+template <class ...Types>
 class CSVReader {
 private:
     std::string filename;
+    std::vector<std::vector<std::string>> values;
 public:
     explicit CSVReader(std::string filename);
-    CSVResult read();
+    void read();
+    CSVResult<Types...> getMapped();
 };
 
 

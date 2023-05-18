@@ -6,8 +6,15 @@
 
 #include "CSVReader.h"
 
-CSVReader::CSVReader(std::string filename): filename(filename) {};
+template <class ...Types>
+CSVReader<Types...>::CSVReader(std::string filename): filename(filename) {};
 
-CSVResult CSVReader::read() {
+template <class ...Types>
+void CSVReader<Types...>::read() {
+
+}
+
+template <class ...Types>
+CSVResult<Types...> getMapped() {
 
 }

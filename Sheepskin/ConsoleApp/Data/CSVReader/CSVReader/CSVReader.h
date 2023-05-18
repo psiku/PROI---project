@@ -7,14 +7,14 @@
 
 #include <string>
 #include "Data/Instrument/Instrument/Instrument.h"
+#include "../CSVResult/CSVResult.h"
 
-template <class T>
 class CSVReader {
 private:
     std::string filename;
 public:
-    CSVReader(std::string filename);
-    std::vector<T> read();
+    explicit CSVReader(std::string filename);
+    CSVResult read();
 };
 
 

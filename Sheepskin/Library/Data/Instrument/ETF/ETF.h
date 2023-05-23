@@ -9,7 +9,9 @@
 #include "../Instrument/Instrument.h"
 
 class ETF: public Instrument {
-
+public:
+    explicit ETF(std::string id);
+    double getVolatility(const Record &record) override;
 };
 
 

@@ -10,16 +10,15 @@
 #include <ctime>
 
 class Record {
-private:
+public:
     time_t date;
     long double open;
     long double high;
     long double low;
     long double close;
-    long double value;
     int volume;
-public:
     Record(time_t date, long double open, long double high, long double low, long double close, int volume);
+    long double getAverage() const;
 };
 
 

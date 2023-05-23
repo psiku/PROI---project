@@ -6,4 +6,8 @@
 
 #include <utility>
 
-Instrument::Instrument(std::string id): id(std::move(id)) {};
+Instrument::Instrument(std::string id): id(std::move(id)) {}
+
+void Instrument::addRecord(const Record& record) {
+    records.push_back(record);
+}

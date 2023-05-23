@@ -4,4 +4,5 @@
 
 #include "Record.h"
 
-Record::Record(time_t date, long double value, int volume): date(date), value(value), volume(volume) {};
+Record::Record(time_t date, long double open, long double high, long double low, long double close, int volume) :
+        date(date), open(open), high(high), low(low), close(close), volume(volume) {};

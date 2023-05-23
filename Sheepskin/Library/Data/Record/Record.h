@@ -12,10 +12,14 @@
 class Record {
 private:
     time_t date;
+    long double open;
+    long double high;
+    long double low;
+    long double close;
     long double value;
     int volume;
 public:
-    Record(time_t date, long double value, int volume);
+    Record(time_t date, long double open, long double high, long double low, long double close, int volume);
 };
 
 

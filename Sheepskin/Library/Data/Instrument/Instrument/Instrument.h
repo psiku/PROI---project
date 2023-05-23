@@ -16,10 +16,10 @@ class Instrument {
 private:
     std::string id;
     std::vector<Record> records;
+    double volatility;
 public:
-    Instrument(std::string id);
-    void addRecord(Record);
-    void addRecord(std::vector<Record>);
+    explicit Instrument(std::string id);
+    void addRecord(const Record& record);
 };
 
 

@@ -20,7 +20,7 @@ private:
 public:
     explicit Instrument(std::string id);
     void addRecord(const Record& record);
-    virtual double getVolatility(const Record& record);
+    virtual long double getVolatility(const Record& record);
 };
 
 

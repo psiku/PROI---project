@@ -11,7 +11,7 @@
 class ETF: public Instrument {
 public:
     explicit ETF(std::string id);
-    double getVolatility(const Record &record) override;
+    long double getVolatility(const Record &record) override;
 };
 
 

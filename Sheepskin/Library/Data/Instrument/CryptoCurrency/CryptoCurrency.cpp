@@ -3,3 +3,15 @@
 //
 
 #include "CryptoCurrency.h"
+
+CryptoCurrency::CryptoCurrency(std::string id) : Instrument(id) {}
+
+long double CryptoCurrency::getVolatility(const Record &record) {
+
+    long double averageVolatility = std::abs(((record.high + record.low + 2 * record.close) / 4 ) - record.getAverage());
+    while (averageVolatility > 1){
+        averageVolatility = averageVolatility / 10;
+    };
+    return (averageVolatility);
+}
+

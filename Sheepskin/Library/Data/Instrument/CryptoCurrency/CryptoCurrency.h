@@ -9,7 +9,8 @@
 #include "../Instrument/Instrument.h"
 
 class CryptoCurrency: public Instrument {
-
+    explicit CryptoCurrency(std::string id);
+    long double getVolatility(const Record &record) override;
 };
 
 

@@ -7,14 +7,17 @@
 
 #include <string>
 #include "Data/Instrument/Instrument/Instrument.h"
+#include "../CSVResult/CSVResult.h"
 
-template <class T>
+template <class ...Types>
 class CSVReader {
 private:
     std::string filename;
+    std::vector<std::vector<std::string>> values;
 public:
-    CSVReader(std::string filename);
-    std::vector<T> read();
+    explicit CSVReader(std::string filename);
+    void read();
+    CSVResult<Types...> getMapped();
 };
 
 

@@ -18,6 +18,8 @@ private:
     std::vector<Record> records;
 public:
     Instrument(std::string id);
+    void addRecord(Record);
+    void addRecord(std::vector<Record>);
 };
 
 

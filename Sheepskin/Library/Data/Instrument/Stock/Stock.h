@@ -12,7 +12,7 @@
 class Stock: public Instrument {
 public:
         explicit Stock(std::string id);
-        double getVolatility(const Record &record) override;
+        long double getVolatility(const Record &record) override;
 };
 
 

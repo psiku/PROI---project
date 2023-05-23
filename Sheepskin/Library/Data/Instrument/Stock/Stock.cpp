@@ -10,7 +10,7 @@
 
 Stock::Stock(std::string id): Instrument(id) {}
 
-double Stock::getVolatility(const Record &record) {
+long double Stock::getVolatility(const Record &record) {
     // Średnia odchylenia = (|Cena otwarcia - Średnia arytmetyczna| +
     // |Cena najwyższa - Średnia arytmetyczna| + |Cena najniższa - Średnia arytmetyczna| +
     // |Cena zamknięcia - Średnia arytmetyczna|) / 4

@@ -11,10 +11,12 @@ class StrategyResult {
 private:
     double rise_chance;
     double fall_chance;
+    double maintenance_chance;
 public:
-    StrategyResult(double rise_chance, double fall_chance);
+    StrategyResult(double rise_chance, double fall_chance, double maintance_chance);
     double getRiseChance() const;
     double getFallChance() const;
+    double getMaintanceChance() const;
 
 };
 

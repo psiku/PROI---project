@@ -5,3 +5,7 @@
 #include "Strategy.h"
 
 Strategy::Strategy(Instrument instrument): instrument(instrument) {}
+
+Instrument Strategy::getInstrument() {
+    return instrument;
+}

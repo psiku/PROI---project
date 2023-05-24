@@ -15,6 +15,7 @@ private:
 public:
     Strategy(Instrument instrument);
     virtual StrategyResult eval() = 0;
+    Instrument getInstrument();
 };
 
 

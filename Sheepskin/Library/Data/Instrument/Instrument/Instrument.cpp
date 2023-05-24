@@ -15,3 +15,7 @@ void Instrument::addRecord(const Record &record) {
 long double Instrument::getVolatility(const Record &record) {
     return 0.0;
 }
+
+std::vector<Record> Instrument::getRecords() const {
+    return records;
+}

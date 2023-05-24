@@ -21,6 +21,7 @@ public:
     explicit Instrument(std::string id);
     void addRecord(const Record& record);
     virtual long double getVolatility(const Record& record);
+    std::vector<Record> getRecords() const;
 };
 
 

@@ -7,11 +7,14 @@
 
 
 #include "../Strategy/Strategy.h"
+#include <cmath>
 
 class FirstStrategy: public Strategy {
 public:
     explicit FirstStrategy(Instrument instrument);
     StrategyResult eval() override;
+    long double calculateTangens(const Record& record1, const Record& record2);
+    std::vector<long double> listOfTangens();
 };
 
 

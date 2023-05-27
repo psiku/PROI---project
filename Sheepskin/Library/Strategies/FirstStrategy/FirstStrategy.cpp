@@ -9,7 +9,7 @@
 FirstStrategy::FirstStrategy(Instrument instrument): Strategy(instrument) {}
 
 StrategyResult FirstStrategy::eval() {
-    StrategyResult result(0.5, 0.5);
+    StrategyResult result(0.5, 0.5, 0.0);
 
     return result;
     //
@@ -34,4 +34,54 @@ std::vector<long double> FirstStrategy::listOfTangens() {
         tangents.push_back(tangent);
     }
     return tangents;
+}
+
+Price FirstStrategy::status(long double value) {
+    if (value > 0.0){
+        return DECREASE;
+    }
+    else if (value == 0.0) {
+        return STILL;
+    }
+    else {
+        return INCREASE;
+    }
+}
+
+int FirstStrategy::lookForChange(std::vector<long double> tangens, int index) {
+    for (int i = index; i< tangens.size() - 1; i++){
+        Price currentStatus = status(tangens[i]);
+        Price nextStatus = status(tangens[i+1]);
+        if (currentStatus != nextStatus){
+            return i;
+        }
+    }
+    return -1; // jeśli nie ma zmiany zwraca -1 -> ciągle rośnie/ ciągle maleje / utrzymuje się
+}
+
+long double FirstStrategy::calculateDifference(int down, int up) {
+    std::vector<Record> records = this->getInstrument().getRecords();
+    Record record1 = records[down];
+    Record record2 = records[up];
+    return record1.close - record2.close;
+}
+
+long double FirstStrategy::sumOfDifference(std::vector<long double> tangens) {
+    long double sumOfDifference = 0;
+    int index = 0;
+    int firstChange = lookForChange(tangens, index);
+
+    while (firstChange != -1){
+        int secondChange = lookForChange(tangens, firstChange + 1);
+
+        if(secondChange != -1){
+            sumOfDifference += calculateDifference(firstChange, secondChange);
+            index = secondChange + 1;
+            firstChange = lookForChange(tangens, index);
+        }
+        else{
+            return sumOfDifference;
+        }
+    }
+    return sumOfDifference;
 }

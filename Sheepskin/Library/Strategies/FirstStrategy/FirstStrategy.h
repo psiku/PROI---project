@@ -8,6 +8,8 @@
 
 #include "../Strategy/Strategy.h"
 #include <cmath>
+#include <iomanip>
+#include <sstream>
 
 
 enum Price {

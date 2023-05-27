@@ -20,6 +20,11 @@ long double FirstStrategy::calculateTangens(const Record& record1, const Record&
     long double x_value = std::abs(record2.date - record1.date);
     long double y_value = record1.close - record2.close;
     long double tangens = y_value / x_value;
+
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(5) << tangens;
+    tangens = std::stold(oss.str());
+
     return tangens;
 }
 
@@ -67,6 +72,7 @@ long double FirstStrategy::calculateDifference(int down, int up) {
 }
 
 long double FirstStrategy::sumOfDifference(std::vector<long double> tangens) {
+    //TODO naprawić funkcję, ma zwracać np całkowity wzrost jeśli nie nastąpiła zmiana stanu !!!
     long double sumOfDifference = 0;
     int index = 0;
     int firstChange = lookForChange(tangens, index);

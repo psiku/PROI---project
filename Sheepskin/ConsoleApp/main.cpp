@@ -2,6 +2,7 @@
 #include "Data/Record/Record.h"
 #include "Strategies/FirstStrategy/FirstStrategy.h"
 #include "Data/Instrument/Instrument/Instrument.h"
+#include "Data/CSVReader/CSVReader/CSVReader.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;

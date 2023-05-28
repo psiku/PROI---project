@@ -109,3 +109,49 @@ TEST(StrategyTest, FirstStrategyCalculateSumOfDifferenceIfThereWasNotChangeInSta
 
     ASSERT_FLOAT_EQ(result, 60.0);
 }
+TEST(StrategyTest, FirstStrategyEvalResult) {
+    Stock stock("id");
+    Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2620.00, 1.0);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2630.00, 0.5);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2640.00, 0.0);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2650.00, -0.5);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2660.00, -1.0);
+    stock.addRecord(record1);
+    stock.addRecord(record2);
+    stock.addRecord(record3);
+    stock.addRecord(record4);
+    stock.addRecord(record5);
+    stock.addRecord(record6);
+    stock.addRecord(record7);
+    FirstStrategy strategy(stock);
+    StrategyResult result = strategy.eval();
+
+    ASSERT_FLOAT_EQ(result.getFallChance(), 0.0);
+    ASSERT_FLOAT_EQ(result.getRiseChance(), 100.0);
+    ASSERT_FLOAT_EQ(result.getMaintanceChance(), 0.0);
+}
+TEST(StrategyTest, FirstStrategyEvalResultDiffrentData) {
+    Stock stock("id");
+    Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2410.00, 1.5);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2320.00, 1.0);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2630.00, 0.5);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2740.00, 0.0);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2740.00, -0.5);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2730.00, -1.0);
+    stock.addRecord(record1);
+    stock.addRecord(record2);
+    stock.addRecord(record3);
+    stock.addRecord(record4);
+    stock.addRecord(record5);
+    stock.addRecord(record6);
+    stock.addRecord(record7);
+    FirstStrategy strategy(stock);
+    StrategyResult result = strategy.eval();
+
+    ASSERT_FLOAT_EQ(result.getFallChance(), 0.0);
+    ASSERT_FLOAT_EQ(result.getRiseChance(), 100.0);
+    ASSERT_FLOAT_EQ(result.getMaintanceChance(), 0.0);
+}

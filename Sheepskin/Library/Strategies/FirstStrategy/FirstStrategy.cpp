@@ -11,11 +11,11 @@ FirstStrategy::FirstStrategy(Instrument instrument): Strategy(instrument) {}
 StrategyResult FirstStrategy::eval() {
 
     std::tuple<double, double, double> chances = calculateChances();
-    double riseChance = std::get<0>(chances);
-    double fallChance = std::get<1>(chances);
-    double maintanceChance = std::get<2>(chances);
+    double riseChance = setPrecision(std::get<0>(chances), 2);
+    double fallChance = setPrecision(std::get<1>(chances), 2);
+    double maintenanceChance = setPrecision(std::get<2>(chances), 2);
 
-    StrategyResult result(riseChance, fallChance, maintanceChance);
+    StrategyResult result(riseChance, fallChance, maintenanceChance);
 
     return result;
 }
@@ -26,9 +26,7 @@ long double FirstStrategy::calculateTangens(const Record& record1, const Record&
     long double y_value = record1.close - record2.close;
     long double tangens = y_value / x_value;
 
-    std::ostringstream oss;
-    oss << std::fixed << std::setprecision(5) << tangens;
-    tangens = std::stold(oss.str());
+    tangens = setPrecision(tangens, 5);
 
     return tangens;
 }
@@ -115,7 +113,7 @@ Price FirstStrategy::lastStatus() {
         const Record &record2 = records[numRecords - 1]; // Last record
         long double tangent = calculateTangens(record1, record2);
         return status(tangent);
-    };
+    }
     return STILL;
 }
 
@@ -188,4 +186,11 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
     }
 
     return std::make_tuple(riseChance, fallChance, maintenanceChance);
+}
+
+double FirstStrategy::setPrecision(double value, int precison) {
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(precison) << value;
+    value = std::stold(oss.str());
+    return value;
 }

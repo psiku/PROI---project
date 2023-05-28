@@ -18,6 +18,8 @@ enum Price {
     DECREASE
 };
 
+//Pierwsza implementacja FirstStrategy -> mogą nastąpić ewentualne zmiany po  obgadaniu jej funkcjonalności, oraz ewentualna refaktoryzacja kodu
+
 class FirstStrategy: public Strategy {
 public:
     explicit FirstStrategy(Instrument instrument);

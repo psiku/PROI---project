@@ -21,14 +21,16 @@ enum Price {
 class FirstStrategy: public Strategy {
 public:
     explicit FirstStrategy(Instrument instrument);
-    StrategyResult eval() override;             // zwraca wynik czy będzie rosło
+    StrategyResult eval() override;             // zwracać ma wynik w postaci rise_chance, fall_chance, maintance_chance
     long double calculateTangens(const Record& record1, const Record& record2);
     std::vector<long double> listOfTangens();
-    Price status(long double value);
+    Price status(long double value);                                    // na podstawie wartości tangensa określa czy ceny maleją czy rosną
+    Price lastStatus();                                                 // zwraca ostatni stan > czy jest malejący, stały czy rosnący
     int lookForChange(std::vector<long double> values, int index);     // zwraca pozycję w wektorze gdzie nastąpiła zmiana
-    long double calculateDifference(int down, int up);       // zwraca różnicę w cenach
-    long double sumOfDifference(std::vector<long double> tangens);  // zwracać będzie średnią albo sumę wszystkich zmian
-    int calculatePercentage(long double sumOfDifference);          // wylicza procenty na powodzenie
+    long double calculateDifference(int down, int up);                // zwraca różnicę w cenach między ostatnimi dwoma zmianami
+    long double sumOfDifference(std::vector<long double> tangens);  // zwraca sumę wszystkich zmian
+    std::tuple<int, int, int>getNumberOfStatus(std::vector<long double> tangens);   // zwraca liczbę ile razy się cena podnosiła, ile malała i ile łacznie się zmieniałą
+    std::tuple<double, double, double> calculateChances();                          // oblicza % na podstawie ilości zmian oraz ilości różnicy cen oraz obecnym trendzie
 };
 
 

@@ -9,10 +9,15 @@
 FirstStrategy::FirstStrategy(Instrument instrument): Strategy(instrument) {}
 
 StrategyResult FirstStrategy::eval() {
-    StrategyResult result(0.5, 0.5, 0.0);
+
+    std::tuple<double, double, double> chances = calculateChances();
+    double riseChance = std::get<0>(chances);
+    double fallChance = std::get<1>(chances);
+    double maintanceChance = std::get<2>(chances);
+
+    StrategyResult result(riseChance, fallChance, maintanceChance);
 
     return result;
-    //
 }
 
 long double FirstStrategy::calculateTangens(const Record& record1, const Record& record2) {
@@ -68,7 +73,7 @@ long double FirstStrategy::calculateDifference(int down, int up) {
     std::vector<Record> records = this->getInstrument().getRecords();
     Record record1 = records[down];
     Record record2 = records[up];
-    return record1.close - record2.close;
+    return record2.close - record1.close;
 }
 
 long double FirstStrategy::sumOfDifference(std::vector<long double> tangens) {
@@ -76,6 +81,16 @@ long double FirstStrategy::sumOfDifference(std::vector<long double> tangens) {
     long double sumOfDifference = 0;
     int index = 0;
     int firstChange = lookForChange(tangens, index);
+
+    if (firstChange == -1) {
+        // Jeśli nie nastąpiła zmiana stanu to zwraca różnicę między pierwszym a ostatnim rekordem
+        const std::vector<Record> &records = this->getInstrument().getRecords();
+        if (!records.empty()) {
+            const Record &firstRecord = records.front();
+            const Record &lastRecord = records.back();
+            sumOfDifference = calculateDifference(0, records.size() - 1);
+        }
+    }
 
     while (firstChange != -1){
         int secondChange = lookForChange(tangens, firstChange + 1);
@@ -90,4 +105,87 @@ long double FirstStrategy::sumOfDifference(std::vector<long double> tangens) {
         }
     }
     return sumOfDifference;
+}
+
+Price FirstStrategy::lastStatus() {
+    std::vector<Record> records = this->getInstrument().getRecords();
+    size_t numRecords = records.size();
+    if (numRecords >= 2) {
+        const Record &record1 = records[numRecords - 2]; // Second to last record
+        const Record &record2 = records[numRecords - 1]; // Last record
+        long double tangent = calculateTangens(record1, record2);
+        return status(tangent);
+    };
+    return STILL;
+}
+
+std::tuple<int, int, int> FirstStrategy::getNumberOfStatus(std::vector<long double> tangents) {
+    int numChanges = 0;
+    int numIncreases = 0;
+    int numDecreases = 0;
+
+    for (size_t i = 0; i < tangents.size() - 1; ++i) {
+        Price currentStatus = status(tangents[i]);
+        Price nextStatus = status(tangents[i + 1]);
+
+        if (currentStatus != nextStatus) {
+            ++numChanges;
+            if (currentStatus == INCREASE) {
+                ++numIncreases;
+            } else if (currentStatus == DECREASE) {
+                ++numDecreases;
+            }
+        }
+    }
+    return std::make_tuple(numChanges, numIncreases, numDecreases);
+}
+
+std::tuple<double, double, double> FirstStrategy::calculateChances() {
+
+    double riseChance = 0.0;
+    double fallChance = 0.0;
+    double maintenanceChance = 0.0;
+
+    std::vector<long double> tangents = listOfTangens();
+    std::tuple<int, int, int> changesInState = getNumberOfStatus(tangents);
+    int numChanges = std::get<0>(changesInState);
+    int numIncreases = std::get<1>(changesInState);
+    int numDecreases = std::get<2>(changesInState);
+
+    long double totalDifference = sumOfDifference(tangents) / this->getInstrument().getRecords().back().close;
+
+    if (numChanges > 0) {
+        riseChance = static_cast<double>(numIncreases) / numChanges * 100.0;
+        fallChance = static_cast<double>(numDecreases) / numChanges * 100.0;
+        maintenanceChance = 100.0 - riseChance - fallChance;
+    }
+
+    // uwzględnić obecny status
+    if (lastStatus() == INCREASE) {
+        riseChance += 10.0;
+    } else if (lastStatus() == DECREASE) {
+        fallChance += 10.0;
+    } else {
+        maintenanceChance += 10.0;
+    }
+
+    // uwzględnić % wzrostów i spadków ceny względem zamykającej
+    if (totalDifference > 0.0) {
+        riseChance += static_cast<double>(totalDifference);
+    } else if (totalDifference < 0.0) {
+        fallChance -= static_cast<double>(totalDifference);
+    } else {
+        maintenanceChance += 1.0;
+    }
+
+    // upewnić się że łącznie jest 100%
+    double totalChances = riseChance + fallChance + maintenanceChance;
+    if (totalChances != 100.0) {
+        double adjustmentFactor = 100.0 / totalChances;
+        riseChance *= adjustmentFactor;
+        fallChance *= adjustmentFactor;
+        maintenanceChance *= adjustmentFactor;
+    }
+
+    return std::make_tuple(riseChance, fallChance, maintenanceChance);
 }

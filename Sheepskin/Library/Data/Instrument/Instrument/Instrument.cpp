@@ -21,5 +21,6 @@ std::vector<Record> Instrument::getRecords() const {
 }
 
 double Instrument::getPrice(const Record &record) {
-    return 0.0;
+    return 0;
 }
+

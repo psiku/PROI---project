@@ -8,10 +8,12 @@
 #include <gtest/gtest.h>
 #include "Strategies/FirstStrategy/FirstStrategy.h"
 #include "Data/Instrument/Stock/Stock.h"
+#include "Data/Instrument/CryptoCurrency/CryptoCurrency.h"
+#include "Data/Instrument/ETF/ETF.h"
 
 TEST(FirstStrategyTest, FirstStrategyGetPriceTest){
     Stock stock("id");
-    FirstStrategy strategy(stock);
+    FirstStrategy strategy(&stock);
 
     Price value1 = strategy.status((3));
     Price value2 = strategy.status((0));
@@ -22,14 +24,14 @@ TEST(FirstStrategyTest, FirstStrategyGetPriceTest){
 }
 TEST(FirstStrategyTest, FirstStrategyLookForChangeTest){
     Stock stock("id");
-    FirstStrategy strategy(stock);
+    FirstStrategy strategy(&stock);
     std::vector<long double> tangens = {1.2, 2.3, 0.6, -0.45, -0.22};
     int index = strategy.lookForChange(tangens, 0);
     ASSERT_EQ(index, 2);
 }
 TEST(FirstStrategyTest, FirstStrategyCalculateTangens){
     Stock stock("id");
-    FirstStrategy strategy(stock);
+    FirstStrategy strategy(&stock);
     Record record1(1647580800,2485.00,2505.00,2470.00,2500.00,2);
     Record record2(1647580860,2495.00,2500.00,2490.00,2495.00,1.5);
 
@@ -53,7 +55,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifference) {
     stock.addRecord(record5);
     stock.addRecord(record4);
     stock.addRecord(record7);
-    FirstStrategy strategy(stock);
+    FirstStrategy strategy(&stock);
     long double result = strategy.sumOfDifference(strategy.listOfTangens());
 
     ASSERT_FLOAT_EQ(result, 20.0);
@@ -74,7 +76,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceIfThereWasNotChange
     stock.addRecord(record5);
     stock.addRecord(record6);
     stock.addRecord(record7);
-    FirstStrategy strategy(stock);
+    FirstStrategy strategy(&stock);
     long double result = strategy.sumOfDifference(strategy.listOfTangens());
 
     ASSERT_FLOAT_EQ(result, 60.0);
@@ -95,23 +97,43 @@ TEST(FirstStrategyTest, FirstStrategyEvalResult) {
     stock.addRecord(record5);
     stock.addRecord(record6);
     stock.addRecord(record7);
-    FirstStrategy strategy(stock);
+    FirstStrategy strategy(&stock);
     StrategyResult result = strategy.eval();
 
     ASSERT_FLOAT_EQ(result.getFallChance(), 0.0);
     ASSERT_FLOAT_EQ(result.getRiseChance(), 100.0);
     ASSERT_FLOAT_EQ(result.getMaintanceChance(), 0.0);
 }
-TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverage) {
+TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForStock) {
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
     Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2620.00, 1.0);
     stock.addRecord(record1);
     stock.addRecord(record2);
-    stock.addRecord(record3);
-    FirstStrategy strategy(stock);
+    FirstStrategy strategy(&stock);
     long double result = strategy.calculateMovingAverage();
 
-    ASSERT_FLOAT_EQ(result, 2970.0);
+    ASSERT_FLOAT_EQ(result, 2515);
+}
+TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForCrypto) {
+    CryptoCurrency crypto("id");
+    Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    crypto.addRecord(record1);
+    crypto.addRecord(record2);
+    FirstStrategy strategy(&crypto);
+    long double result = strategy.calculateMovingAverage();
+
+    ASSERT_FLOAT_EQ(result, 2603.333);
+}
+TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForETF) {
+    ETF etf("id");
+    Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    etf.addRecord(record1);
+    etf.addRecord(record2);
+    FirstStrategy strategy(&etf);
+    long double result = strategy.calculateMovingAverage();
+
+    ASSERT_FLOAT_EQ(result, 2530.8333);
 }

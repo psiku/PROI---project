@@ -22,7 +22,7 @@ enum Price {
 
 class FirstStrategy: public Strategy {
 public:
-    explicit FirstStrategy(Instrument instrument);
+    explicit FirstStrategy(Instrument* instrument);
     StrategyResult eval() override;             // zwracać ma wynik w postaci rise_chance, fall_chance, maintance_chance
     long double calculateTangens(const Record& record1, const Record& record2);
     std::vector<long double> listOfTangens();

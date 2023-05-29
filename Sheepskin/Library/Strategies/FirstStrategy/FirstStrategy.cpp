@@ -6,7 +6,7 @@
 
 #include <utility>
 
-FirstStrategy::FirstStrategy(Instrument instrument): Strategy(instrument) {}
+FirstStrategy::FirstStrategy(Instrument* instrument): Strategy(instrument) {}
 
 StrategyResult FirstStrategy::eval() {
 
@@ -33,7 +33,7 @@ long double FirstStrategy::calculateTangens(const Record& record1, const Record&
 
 std::vector<long double> FirstStrategy::listOfTangens() {
     std::vector<long double> tangents;
-    const std::vector<Record>& records = this->getInstrument().getRecords();
+    const std::vector<Record>& records = getInstrument()->getRecords();
 
     for (size_t i = 0; i < records.size() - 1; ++i) {
         const Record& record1 = records[i];
@@ -68,7 +68,7 @@ int FirstStrategy::lookForChange(std::vector<long double> tangens, int index) {
 }
 
 long double FirstStrategy::calculateDifference(int down, int up) {
-    std::vector<Record> records = this->getInstrument().getRecords();
+    std::vector<Record> records = getInstrument()->getRecords();
     Record record1 = records[down];
     Record record2 = records[up];
     return record2.close - record1.close;
@@ -81,7 +81,7 @@ long double FirstStrategy::sumOfDifference(std::vector<long double> tangens) {
 
     if (firstChange == -1) {
         // Jeśli nie nastąpiła zmiana stanu to zwraca różnicę między pierwszym a ostatnim rekordem
-        const std::vector<Record> &records = this->getInstrument().getRecords();
+        const std::vector<Record> &records = getInstrument()->getRecords();
         if (!records.empty()) {
             const Record &firstRecord = records.front();
             const Record &lastRecord = records.back();
@@ -105,7 +105,7 @@ long double FirstStrategy::sumOfDifference(std::vector<long double> tangens) {
 }
 
 Price FirstStrategy::lastStatus() {
-    std::vector<Record> records = this->getInstrument().getRecords();
+    std::vector<Record> records = getInstrument()->getRecords();
     size_t numRecords = records.size();
     if (numRecords >= 2) {
         const Record &record1 = records[numRecords - 2]; // Second to last record
@@ -149,7 +149,7 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
     int numIncreases = std::get<1>(changesInState);
     int numDecreases = std::get<2>(changesInState);
 
-    long double totalDifference = sumOfDifference(tangents) / this->getInstrument().getRecords().back().close;
+    long double totalDifference = sumOfDifference(tangents) / getInstrument()->getRecords().back().close;
 
     if (numChanges > 0) {
         riseChance = static_cast<double>(numIncreases) / numChanges * 100.0;
@@ -195,5 +195,15 @@ double FirstStrategy::setPrecision(double value, int precison) {
 }
 
 double FirstStrategy::calculateMovingAverage() {
-    return 0;
+    std::vector<Record> records = getInstrument()->getRecords();
+    int weight = records.size();
+    int sumOfWeights = 0;
+    double result = 0;
+    for(int i = 0; i < records.size(); i++){
+        double value = getInstrument()->getPrice(records[i]) * weight;
+        result += value;
+        sumOfWeights += weight;
+        weight -= 1;
+    }
+    return result/sumOfWeights;
 }

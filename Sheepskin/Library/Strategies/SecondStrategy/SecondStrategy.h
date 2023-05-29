@@ -10,7 +10,7 @@
 
 class SecondStrategy: public Strategy  {
 public:
-    explicit SecondStrategy(Instrument instrument);
+    explicit SecondStrategy(Instrument* instrument);
     StrategyResult eval();
 };
 

@@ -9,14 +9,16 @@
 #include "../../Data/Instrument/Instrument/Instrument.h"
 #include "../StrategyResult/StrategyResult.h"
 
+
 class Strategy {
 private:
-    Instrument instrument;
+    Instrument* instrument;
 public:
-    Strategy(Instrument instrument);
+    Strategy(Instrument* instrument);
     virtual StrategyResult eval() = 0;
-    Instrument getInstrument();
+    Instrument* getInstrument();
 };
+
 
 
 #endif //SHEEPSKIN_STRATEGY_H

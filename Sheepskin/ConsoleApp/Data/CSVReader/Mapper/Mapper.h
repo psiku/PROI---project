@@ -37,10 +37,17 @@ void Mapper<T>::addColumn(std::vector<std::string> column) {
 }
 
 template <class T>
-Mapper<T>::Mapper(std::vector<std::string> column): column(column) {std::cout << "test ";};
+Mapper<T>::Mapper(std::vector<std::string> column): column(column) {
+//    std::cout << "Column: \n";
+//    for(std::string s:column) {
+//        std::cout << s << " ";
+//    }
+//    std::cout << '\n';
+};
 
 template <>
 std::vector<int> Mapper<int>::translate() {
+    std::cout << "int\n" << std::endl;
     std::vector<int> ans;
     for(std::string str:column) {
         ans.emplace_back(std::stoi(str)) ;
@@ -51,6 +58,7 @@ std::vector<int> Mapper<int>::translate() {
 
 template <>
 std::vector<long double> Mapper<long double>::translate() {
+    std::cout << "long double\n" << std::endl;
     std::vector<long double> ans;
     for(std::string str:column) {
         ans.emplace_back(std::stold(str)) ;
@@ -59,6 +67,7 @@ std::vector<long double> Mapper<long double>::translate() {
 }
 template <>
 std::vector<time_t> Mapper<time_t>::translate() {
+    std::cout << "time_t\n" << std::endl;
     std::vector<time_t> ans;
     for(std::string str:column) {
         struct std::tm tm;
@@ -70,5 +79,10 @@ std::vector<time_t> Mapper<time_t>::translate() {
     return ans;
 }
 
+template<class T>
+std::vector<T> Mapper<T>::translate() {
+    std::cout << "different\n" << std::endl;
+    return column;
+}
 
 #endif //SHEEPSKIN_MAPPER_H

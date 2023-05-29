@@ -20,16 +20,14 @@ public:
     CSVReader() = default;
     void read(std::ifstream &file);
     CSVResult<Types...> getMapped() {
-        std::cout << "Am hereeee";
         using CSVRow = std::tuple<Types...>;
-        std::vector<CSVRow> vals;
-        for(auto row:values) {
-//            std::cout << "Am here";
-//            Mapper mapper<Type(row);
-//            mapper.translate<long double>();
-            (Mapper<Types>(row), ...);
-            //vals.emplace_back(r);
-        }
+        std::vector<CSVRow> vals(values[0].size());
+        CSVResult res;
+        int row_iterator = 0;
+        ([&]{
+            std::vector<Types> translated = Mapper<Types>(values[row_iterator]).translate();
+            row_iterator++;
+        }(), ...);
         return CSVResult(vals);
     };
 };

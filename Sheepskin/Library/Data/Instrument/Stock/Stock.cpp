@@ -28,5 +28,5 @@ double Stock::calculateMean(const Record &record) {
     std::vector<long double> values = {record.open, record.high, record.low, record.close};
     std::sort(values.begin(), values.end());
 
-    return (values.at(1) + values.at(2) )/ 2;
+    return (values.at(1) + values.at(2)) / 2;
 };

@@ -34,6 +34,7 @@ public:
     std::tuple<int, int, int>getNumberOfStatus(std::vector<long double> tangens);   // zwraca liczbę ile razy się cena podnosiła, ile malała i ile łacznie się zmieniałą
     std::tuple<double, double, double> calculateChances();                          // oblicza % na podstawie ilości zmian oraz ilości różnicy cen oraz obecnym trendzie
     double setPrecision(double value, int precison);
+    double calculateMovingAverage();
 };
 
 

@@ -193,3 +193,7 @@ double FirstStrategy::setPrecision(double value, int precison) {
     value = std::stold(oss.str());
     return value;
 }
+
+double FirstStrategy::calculateMovingAverage() {
+    return 0;
+}

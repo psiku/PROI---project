@@ -16,6 +16,6 @@ long double CryptoCurrency::getVolatility(const Record &record) {
 }
 
 double CryptoCurrency::getPrice(const Record &record) {
-    return 0;
+    return record.close;
 }
 

@@ -13,5 +13,5 @@ TEST(ETFTest, getPriceTest) {
     etf.addRecord(record);
     double result = etf.getPrice(record);
 
-    ASSERT_FLOAT_EQ(result, );
+    ASSERT_FLOAT_EQ(result, 37987.5);
 }

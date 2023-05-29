@@ -15,9 +15,11 @@ private:
     int index = 0;
     std::vector<std::tuple<Types...>> data;
 public:
-    explicit CSVResult(std::vector<std::tuple<Types...>> data);
+    CSVResult() = default;
+    explicit CSVResult(std::vector<std::tuple<Types...>> data): data(data) {};
     std::tuple<Types...> readline();
 };
 
+#include "CSVResult.cpp"
 
 #endif //SHEEPSKIN_CSVRESULT_H

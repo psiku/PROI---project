@@ -2,6 +2,7 @@
 #include "Data/Record/Record.h"
 #include "Strategies/FirstStrategy/FirstStrategy.h"
 #include "Data/Instrument/Instrument/Instrument.h"
+#include "Data/CSVReader/CSVReader/CSVReader.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -39,5 +40,13 @@ int main() {
     std::cout << "Fall chance: " << fallChance << "%" << std::endl;
     std::cout << "Maintenance chance: " << maintenanceChance << "%" << std::endl;
 
+
+    std::ifstream file;
+    file.open("/Users/chumchum/Studia/SEM2/PROI/Projekt/laboratoria-proi23l-projekt-zespolowy/Sheepskin/Data/example.csv");
+//    return 0;
+    CSVReader<std::string, std::string, time_t, long double, long double, long double, long double, long double> reader;
+    //134.50,135.75,133.90,135.25,1000
+    reader.read(file);
+    reader.getMapped();
     return 0;
 }

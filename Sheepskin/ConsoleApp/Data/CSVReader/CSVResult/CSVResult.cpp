@@ -10,8 +10,8 @@
 #include <sstream>
 #include <iomanip>
 
-template <class ...Types>
-CSVResult<Types...>::CSVResult(std::vector<std::tuple<Types...>> data): data(data) {};
+//template <class ...Types>
+//CSVResult<Types...>::CSVResult(std::vector<std::tuple<Types...>> data): data(data) {};
 
 template <class ...Types>
 std::tuple<Types...> CSVResult<Types...>::readline() {

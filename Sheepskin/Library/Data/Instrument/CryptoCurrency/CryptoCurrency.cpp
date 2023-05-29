@@ -15,3 +15,7 @@ long double CryptoCurrency::getVolatility(const Record &record) {
     return (averageVolatility);
 }
 
+double CryptoCurrency::getPrice(const Record &record) {
+    return 0;
+}
+

@@ -19,3 +19,7 @@ long double Instrument::getVolatility(const Record &record) {
 std::vector<Record> Instrument::getRecords() const {
     return records;
 }
+
+double Instrument::getPrice(const Record &record) {
+    return 0.0;
+}

@@ -18,4 +18,8 @@ long double Stock::getVolatility(const Record &record) {
     long double averageVolatility = (std::abs(record.open - averageValue) + std::abs(record.close - averageValue)
                                      + std::abs(record.low - averageValue) + std::abs(record.high - averageValue));
     return averageVolatility;
+}
+
+double Stock::getPrice(const Record &record) {
+    return 0;
 };

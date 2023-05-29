@@ -75,7 +75,6 @@ long double FirstStrategy::calculateDifference(int down, int up) {
 }
 
 long double FirstStrategy::sumOfDifference(std::vector<long double> tangens) {
-    //TODO naprawić funkcję, ma zwracać np całkowity wzrost jeśli nie nastąpiła zmiana stanu !!!
     long double sumOfDifference = 0;
     int index = 0;
     int firstChange = lookForChange(tangens, index);

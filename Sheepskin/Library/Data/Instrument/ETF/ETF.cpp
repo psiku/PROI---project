@@ -21,4 +21,8 @@ long double ETF::getVolatility(const Record &record) {
     return averageVolatility;
 }
 
+double ETF::getPrice(const Record &record) {
+    return 0;
+}
+
 

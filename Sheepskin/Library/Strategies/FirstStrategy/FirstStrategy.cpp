@@ -32,15 +32,24 @@ long double FirstStrategy::calculateTangens(const Record& record1, const Record&
 }
 
 std::vector<long double> FirstStrategy::listOfTangens() {
+    // aded own iterator ! ! ! ! ! !
     std::vector<long double> tangents;
-    const std::vector<Record>& records = getInstrument()->getRecords();
+    Instrument* instrument = getInstrument();
+    Instrument::Iterator it = instrument->begin();
+    Instrument::Iterator endIt = instrument->end();
 
-    for (size_t i = 0; i < records.size() - 1; ++i) {
-        const Record& record1 = records[i];
-        const Record& record2 = records[i + 1];
-        long double tangent = calculateTangens(record1, record2);
-        tangents.push_back(tangent);
+    if (it != endIt) {
+        Instrument::Iterator nextIt = it;
+        ++nextIt;
+
+        for (; nextIt != endIt; ++it, ++nextIt) {
+            const Record& record1 = *it;
+            const Record& record2 = *nextIt;
+            long double tangent = calculateTangens(record1, record2);
+            tangents.push_back(tangent);
+        }
     }
+
     return tangents;
 }
 

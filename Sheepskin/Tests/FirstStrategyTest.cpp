@@ -154,8 +154,8 @@ TEST(FirstStrategyTest, FirstStrategyEvalResult) {
     FirstStrategy strategy(&stock);
     StrategyResult result = strategy.eval();
 
-    ASSERT_FLOAT_EQ(result.getFallChance(), 0.0);
-    ASSERT_FLOAT_EQ(result.getRiseChance(), 100.0);
+    ASSERT_FLOAT_EQ(result.getFallChance(), 4.7);
+    ASSERT_FLOAT_EQ(result.getRiseChance(), 95.3);
     ASSERT_FLOAT_EQ(result.getMaintanceChance(), 0.0);
 }
 TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForStock) {

@@ -117,7 +117,7 @@ Price FirstStrategy::lastStatus() {
     std::vector<Record> records = getInstrument()->getRecords();
     if (records.size() >= 2) {
         const Record& record1 = *(std::prev(records.end(), 2)); // Second to last record
-        const Record &record2 = records.back(); // Last record
+        const Record &record2 = records.back();                       // Last record
         long double tangent = calculateTangens(record1, record2);
         return status(tangent);
     }
@@ -178,7 +178,9 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
     int numIncreases = std::get<1>(changesInState);
     int numDecreases = std::get<2>(changesInState);
 
-    long double totalDifference = sumOfDifference(tangents) / getInstrument()->getRecords().back().close;
+    double lastKnownValue = getInstrument()->getRecords().back().close;
+
+    long double totalDifference = sumOfDifference(tangents) / lastKnownValue;
 
     if (numChanges > 0) {
         riseChance = static_cast<double>(numIncreases) / numChanges * 100.0;
@@ -200,6 +202,17 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
         riseChance += static_cast<double>(totalDifference);
     } else if (totalDifference < 0.0) {
         fallChance -= static_cast<double>(totalDifference);
+    } else {
+        maintenanceChance += 1.0;
+    }
+
+    double movingAverage = calculateMovingAverage();
+
+    // średnia krocząca wzięta pod uwagę
+    if (movingAverage > lastKnownValue) {
+        riseChance += 0.5;
+    } else if (movingAverage < lastKnownValue) {
+        fallChance += 0.5;
     } else {
         maintenanceChance += 1.0;
     }

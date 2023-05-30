@@ -31,7 +31,6 @@ long double FirstStrategy::calculateTangens(const Record& record1, const Record&
 }
 
 std::vector<long double> FirstStrategy::listOfTangens() {
-    // aded own iterator ! ! ! ! ! !
     std::vector<long double> tangents;
     Instrument* instrument = getInstrument();
     Instrument::Iterator it = instrument->begin();
@@ -48,7 +47,6 @@ std::vector<long double> FirstStrategy::listOfTangens() {
             tangents.push_back(tangent);
         }
     }
-
     return tangents;
 }
 
@@ -78,7 +76,6 @@ int FirstStrategy::lookForChange(std::vector<long double> tangens, int index) {
 
     return -1; // If there is no change, return -1 (continuously increasing/decreasing/maintaining)
 }
-
 long double FirstStrategy::calculateDifference(int down, int up) {
     std::vector<Record> records = getInstrument()->getRecords();
     Record record1 = records[down];

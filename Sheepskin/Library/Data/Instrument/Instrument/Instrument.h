@@ -9,8 +9,8 @@
 #include <string>
 #include <vector>
 #include "../../Record/Record.h"
-
 #include "../../Record/Record.h"
+
 
 class Instrument {
 private:
@@ -25,8 +25,8 @@ public:
     std::vector<Record> getRecords() const;
     virtual double getPrice(const Record& record);
 
-    // Iterator implementation
-    class Iterator {
+// Iterator -> możliwe że do przeniesienia jako osobna klasa
+    struct Iterator {
     public:
         using iterator_category = std::forward_iterator_tag;
         using difference_type   = std::ptrdiff_t;

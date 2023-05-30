@@ -60,6 +60,39 @@ TEST(FirstStrategyTest, FirstStrategyTestListOfTangents) {
 
     ASSERT_FLOAT_EQ(result.at(0), -0.16667);
 }
+TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceCryptocurrency) {
+    CryptoCurrency crypto("id");
+    Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    crypto.addRecord(record1);
+    crypto.addRecord(record2);
+    FirstStrategy strategy(&crypto);
+    long double result = strategy.calculateDifference(0, 1);
+
+    ASSERT_FLOAT_EQ(result, 10);
+}
+TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceStock) {
+    Stock stock("id");
+    Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    stock.addRecord(record1);
+    stock.addRecord(record2);
+    FirstStrategy strategy(&stock);
+    long double result = strategy.calculateDifference(0, 1);
+
+    ASSERT_FLOAT_EQ(result, 60);
+}
+TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceETF) {
+    ETF etf("id");
+    Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    etf.addRecord(record1);
+    etf.addRecord(record2);
+    FirstStrategy strategy(&etf);
+    long double result = strategy.calculateDifference(0, 1);
+
+    ASSERT_FLOAT_EQ(result, 47.5);
+}
 TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifference) {
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);

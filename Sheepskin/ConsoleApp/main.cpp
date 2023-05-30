@@ -58,7 +58,7 @@ int main() {
     stock.addRecord(record1);
     stock.addRecord(record2);
     stock.addRecord(record3);
-    FirstStrategy strategy(stock);
+    FirstStrategy strategy(&stock);
 
 
     return 0;

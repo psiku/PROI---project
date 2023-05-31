@@ -9,10 +9,10 @@
 
 class Validator {
 public:
-    static bool checkBorderPrices(const Instrument& instrument);
-    static bool checkPrice(const Instrument& instrument);
-    static bool checkDateRepetition(const Instrument& instrument);
-    static bool validate(const Instrument& instrument);
+    static bool checkBorderPrices(Instrument& instrument);
+    static bool checkPrice(Instrument& instrument);
+    static bool checkDateRepetition(Instrument& instrument);
+    static bool validate(Instrument& instrument);
 
 };
 

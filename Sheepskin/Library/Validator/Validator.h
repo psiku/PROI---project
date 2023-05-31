@@ -12,6 +12,7 @@ public:
     static bool checkBorderPrices(Instrument& instrument);
     static bool checkPrice(Instrument& instrument);
     static bool checkDateRepetition(Instrument& instrument);
+    static bool checkDateOrder(Instrument& instrument);
     static bool validate(Instrument& instrument);
 
 };

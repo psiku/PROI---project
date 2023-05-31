@@ -42,3 +42,17 @@ TEST(ValidatorTests, InvalidInstrument) {
     bool result = validator.validate(crypto);
     ASSERT_FALSE(result);
 }
+TEST(ValidatorTests, InvalidBorderPricesTest) {
+    Record record1(1647580800, 135.45, 200, 100, 175.25, 1000);
+
+    Validator validator;
+    bool result = validator.checkBorderPrices(record1);
+    ASSERT_TRUE(result);
+}
+TEST(ValidatorTests, ValidBorderPricesTest) {
+    Record record1(1647580800, 135.45, 100, 200, 175.25, 1000);
+
+    Validator validator;
+    bool result = validator.checkBorderPrices(record1);
+    ASSERT_FALSE(result);
+}

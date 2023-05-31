@@ -15,8 +15,8 @@ private:
     Instrument* instrument;
 public:
     Strategy(Instrument* instrument);
-    virtual StrategyResult eval() = 0;
-    Instrument* getInstrument();
+    virtual StrategyResult eval() = 0;      // virtual function which returns % of rise, fall or maintance in price of instrument
+    Instrument* getInstrument();            // returns a pointer to an Instrument object stored in the Strategy class
 };
 
 

@@ -4,6 +4,7 @@
 
 #ifndef SHEEPSKIN_VALIDATOR_H
 #define SHEEPSKIN_VALIDATOR_H
+
 #include "../Data/Instrument/Instrument/Instrument.h"
 
 class Validator {

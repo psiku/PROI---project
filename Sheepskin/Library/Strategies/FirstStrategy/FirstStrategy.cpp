@@ -92,7 +92,7 @@ double FirstStrategy::sumOfDifference(std::vector<double> tangens) {
     int firstChange = lookForChange(tangens, index);
 
     if (firstChange == -1) {
-        // Jeśli nie nastąpiła zmiana stanu to zwraca różnicę między pierwszym a ostatnim rekordem
+        // If there is no change in state, returns difference in price between first and last record
         const std::vector<Record> &records = getInstrument()->getRecords();
         if (!records.empty()) {
             sumOfDifference = calculateDifference(0, records.size() - 1);
@@ -117,8 +117,8 @@ double FirstStrategy::sumOfDifference(std::vector<double> tangens) {
 Price FirstStrategy::lastStatus() {
     std::vector<Record> records = getInstrument()->getRecords();
     if (records.size() >= 2) {
-        const Record& record1 = *(std::prev(records.end(), 2)); // Second to last record
-        const Record &record2 = records.back();                       // Last record
+        const Record& record1 = *(std::prev(records.end(), 2)); // second to last record
+        const Record &record2 = records.back();                       // last record
         double tangent = calculateTangens(record1, record2);
         return status(tangent);
     }
@@ -187,7 +187,7 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
         maintenanceChance = 100.0 - riseChance - fallChance;
     }
 
-    // uwzględnić obecny status
+    // take into account current status
     if (lastStatus() == INCREASE) {
         riseChance += 10.0;
     } else if (lastStatus() == DECREASE) {
@@ -196,7 +196,7 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
         maintenanceChance += 10.0;
     }
 
-    // uwzględnić % wzrostów i spadków ceny względem zamykającej
+    // taking into account the % increases and decreases in the price of the last known price
     if (totalDifference > 0.0) {
         riseChance += totalDifference;
     } else if (totalDifference < 0.0) {
@@ -207,7 +207,7 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
 
     double movingAverage = calculateMovingAverage();
 
-    // średnia krocząca wzięta pod uwagę
+    // taking into account the moving average
     if (movingAverage > lastKnownValue) {
         riseChance += 10.0;
     } else if (movingAverage < lastKnownValue) {
@@ -216,7 +216,7 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
         maintenanceChance += 10.0;
     }
 
-    // upewnić się że łącznie jest 100%
+    // checking if it sums to 100%, if not then adjusting it
     double totalChances = riseChance + fallChance + maintenanceChance;
     if (totalChances != 100.0) {
         double adjustmentFactor = 100.0 / totalChances;

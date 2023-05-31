@@ -5,7 +5,7 @@
 #ifndef SHEEPSKIN_CONTEXT_H
 #define SHEEPSKIN_CONTEXT_H
 #include "../Strategies/Strategy/Strategy.h"
-
+#include <memory>
 class Context {
 private:
     std::unique_ptr<Strategy> current;

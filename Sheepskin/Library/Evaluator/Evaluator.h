@@ -11,7 +11,7 @@
 
 class Evaluator {
 private:
-    static static StrategyType chose(Instrument *instrument);
+    static StrategyType chose(Instrument *instrument);
 public:
     Evaluator() = default;
     void handle(Context* context, Instrument *instrument);

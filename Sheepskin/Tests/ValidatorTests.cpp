@@ -42,7 +42,7 @@ TEST(ValidatorTests, InvalidInstrument) {
     bool result = validator.validate(crypto);
     ASSERT_FALSE(result);
 }
-TEST(ValidatorTests, InvalidBorderPricesTest) {
+TEST(ValidatorTests, ValidBorderPricesTest) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 135.45, 200, 100, 175.25, 1000);
     Record record2(1647580860, 130.45, 200, 100, 175.25, 500);
@@ -55,7 +55,7 @@ TEST(ValidatorTests, InvalidBorderPricesTest) {
     bool result = validator.checkBorderPrices(crypto);
     ASSERT_TRUE(result);
 }
-TEST(ValidatorTests, ValidBorderPricesTest) {
+TEST(ValidatorTests, InvalidBorderPricesTest) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 135.45, 70, 100, 175.25, 1000);
     Record record2(1647580860, 130.45, 200, 100, 175.25, 500);

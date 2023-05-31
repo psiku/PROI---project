@@ -7,14 +7,14 @@
 
 FirstStrategy::FirstStrategy(Instrument* instrument): Strategy(instrument) {}
 
-StrategyResult FirstStrategy::eval() {
+Evaluation FirstStrategy::eval() {
 
     std::tuple<double, double, double> chances = calculateChances();
     double riseChance = setPrecision(std::get<0>(chances), 2);
     double fallChance = setPrecision(std::get<1>(chances), 2);
     double maintenanceChance = setPrecision(std::get<2>(chances), 2);
 
-    StrategyResult result(riseChance, fallChance, maintenanceChance);
+    Evaluation result(riseChance, fallChance, maintenanceChance);
 
     return result;
 }

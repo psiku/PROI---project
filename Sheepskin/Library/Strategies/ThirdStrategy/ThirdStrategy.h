@@ -11,7 +11,7 @@
 class ThirdStrategy: public Strategy {
 public:
     ThirdStrategy();
-    StrategyResult eval();
+    Evaluation eval();
 };
 
 

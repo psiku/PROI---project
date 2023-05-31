@@ -12,7 +12,7 @@
 ////    Stock stock("test");
 ////    FirstStrategy strategy(stock);
 ////
-////    StrategyResult result = strategy.eval();
+////    Evaluation result = strategy.eval();
 ////    ASSERT_FLOAT_EQ(result.getFallChance(), 0.5);
 ////    ASSERT_FLOAT_EQ(result.getRiseChance(), 0.5);
 ////}
@@ -20,7 +20,7 @@
 //    Stock stock("test");
 //    SecondStrategy strategy(stock);
 //
-//    StrategyResult result = strategy.eval();
+//    Evaluation result = strategy.eval();
 //    ASSERT_FLOAT_EQ(result.getFallChance(), 0.2);
 //    ASSERT_FLOAT_EQ(result.getRiseChance(), 0.8);
 //}

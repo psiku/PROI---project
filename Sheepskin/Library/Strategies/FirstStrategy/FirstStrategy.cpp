@@ -20,9 +20,10 @@ StrategyResult FirstStrategy::eval() {
 }
 
 long double FirstStrategy::calculateTangens(const Record& record1, const Record& record2) {
-    // w przyszłości y_value będzie zmieniona na wartość wyliczaną osobno dla strategii
     long double x_value = std::abs(record2.date - record1.date);
-    long double y_value = record1.close - record2.close;
+    double value1 = this->getInstrument()->getPrice(record1);
+    double value2 = this->getInstrument()->getPrice(record2);
+    long double y_value = value1 - value2;
     long double tangens = y_value / x_value;
 
     tangens = setPrecision(tangens, 5);
@@ -129,19 +130,18 @@ std::tuple<int, int, int> FirstStrategy::getNumberOfStatus(std::vector<long doub
     int numIncreases = 0;
     int numDecreases = 0;
 
-    for (size_t i = 0; i < tangents.size() - 1; ++i) {
-        Price currentStatus = status(tangents[i]);
-        Price nextStatus = status(tangents[i + 1]);
+    for (const auto& tangent : tangents) {
+        Price currentStatus = status(tangent);
 
-        if (currentStatus != nextStatus) {
-            ++numChanges;
-            if (currentStatus == INCREASE) {
-                ++numIncreases;
-            } else if (currentStatus == DECREASE) {
-                ++numDecreases;
-            }
+        if (currentStatus == INCREASE) {
+            ++numIncreases;
+        } else if (currentStatus == DECREASE) {
+            ++numDecreases;
         }
+
+        ++numChanges;
     }
+
     return std::make_tuple(numChanges, numIncreases, numDecreases);
 }
 
@@ -180,11 +180,11 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
 
     double lastKnownValue = getInstrument()->getRecords().back().close;
 
-    long double totalDifference = sumOfDifference(tangents) / lastKnownValue;
+    long double totalDifference = sumOfDifference(tangents) * 100 / lastKnownValue;
 
     if (numChanges > 0) {
-        riseChance = static_cast<double>(numIncreases) / numChanges * 100.0;
-        fallChance = static_cast<double>(numDecreases) / numChanges * 100.0;
+        riseChance = (static_cast<double>(numIncreases) / numChanges) * 100.0;
+        fallChance = (static_cast<double>(numDecreases) / numChanges) * 100.0;
         maintenanceChance = 100.0 - riseChance - fallChance;
     }
 
@@ -203,18 +203,18 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
     } else if (totalDifference < 0.0) {
         fallChance -= static_cast<double>(totalDifference);
     } else {
-        maintenanceChance += 1.0;
+        maintenanceChance += 10.0;
     }
 
     double movingAverage = calculateMovingAverage();
 
     // średnia krocząca wzięta pod uwagę
     if (movingAverage > lastKnownValue) {
-        riseChance += 0.5;
+        riseChance += 10.0;
     } else if (movingAverage < lastKnownValue) {
-        fallChance += 0.5;
+        fallChance += 10.0;
     } else {
-        maintenanceChance += 1.0;
+        maintenanceChance += 10.0;
     }
 
     // upewnić się że łącznie jest 100%

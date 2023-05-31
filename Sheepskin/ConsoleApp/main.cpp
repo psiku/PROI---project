@@ -51,15 +51,6 @@ int main() {
 //    reader.read(file);
 //    reader.getMapped();
 
-    Stock stock("id");
-    Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2620.00, 1.0);
-    stock.addRecord(record1);
-    stock.addRecord(record2);
-    stock.addRecord(record3);
-    FirstStrategy strategy(&stock);
-
 
     return 0;
 }

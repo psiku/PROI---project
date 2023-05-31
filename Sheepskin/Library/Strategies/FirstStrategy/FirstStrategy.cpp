@@ -108,7 +108,7 @@ double FirstStrategy::sumOfDifference(std::vector<double> tangens) {
             firstChange = lookForChange(tangens, index);
         }
         else{
-            return sumOfDifference;
+            return calculateDifference(firstChange, tangens.size());
         }
     }
     return sumOfDifference;

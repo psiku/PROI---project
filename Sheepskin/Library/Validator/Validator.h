@@ -9,7 +9,9 @@
 
 class Validator {
 public:
+    static bool checkBorderPrices(const Record& record);
     static bool validate(const Instrument& instrument);
+
 };
 
 

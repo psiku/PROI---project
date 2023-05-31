@@ -6,9 +6,9 @@
 
 CryptoCurrency::CryptoCurrency(std::string id) : Instrument(id) {}
 
-long double CryptoCurrency::getVolatility(const Record &record) {
+double CryptoCurrency::getVolatility(const Record &record) {
     //Średnia = |((H + L + 2C) / 4) - średnia arytmetyczna)| -> aż będzie mniejsze niż 1
-    long double averageVolatility = std::abs(((record.high + record.low + 2 * record.close) / 4 ) - record.getAverage());
+    double averageVolatility = std::abs(((record.high + record.low + 2 * record.close) / 4 ) - record.getAverage());
     while (averageVolatility > 1){
         averageVolatility = averageVolatility / 10;
     };

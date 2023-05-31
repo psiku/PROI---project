@@ -19,20 +19,20 @@ StrategyResult FirstStrategy::eval() {
     return result;
 }
 
-long double FirstStrategy::calculateTangens(const Record& record1, const Record& record2) {
-    long double x_value = std::abs(record2.date - record1.date);
+double FirstStrategy::calculateTangens(const Record& record1, const Record& record2) {
+    double x_value = std::abs(record2.date - record1.date);
     double value1 = this->getInstrument()->getPrice(record1);
     double value2 = this->getInstrument()->getPrice(record2);
-    long double y_value = value1 - value2;
-    long double tangens = y_value / x_value;
+    double y_value = value1 - value2;
+    double tangens = y_value / x_value;
 
     tangens = setPrecision(tangens, 5);
 
     return tangens;
 }
 
-std::vector<long double> FirstStrategy::listOfTangens() {
-    std::vector<long double> tangents;
+std::vector<double> FirstStrategy::listOfTangens() {
+    std::vector<double> tangents;
     Instrument* instrument = getInstrument();
     Instrument::Iterator it = instrument->begin();
     Instrument::Iterator endIt = instrument->end();
@@ -44,14 +44,14 @@ std::vector<long double> FirstStrategy::listOfTangens() {
         for (; nextIt != endIt; ++it, ++nextIt) {
             const Record& record1 = *it;
             const Record& record2 = *nextIt;
-            long double tangent = calculateTangens(record1, record2);
+            double tangent = calculateTangens(record1, record2);
             tangents.push_back(tangent);
         }
     }
     return tangents;
 }
 
-Price FirstStrategy::status(long double value) {
+Price FirstStrategy::status(double value) {
     if (value > 0.0){
         return DECREASE;
     }
@@ -63,7 +63,7 @@ Price FirstStrategy::status(long double value) {
     }
 }
 
-int FirstStrategy::lookForChange(std::vector<long double> tangens, int index) {
+int FirstStrategy::lookForChange(std::vector<double> tangens, int index) {
     auto iter = tangens.begin() + index;
     auto endIter = tangens.end() - 1;
 
@@ -77,7 +77,7 @@ int FirstStrategy::lookForChange(std::vector<long double> tangens, int index) {
 
     return -1; // If there is no change, return -1 (continuously increasing/decreasing/maintaining)
 }
-long double FirstStrategy::calculateDifference(int down, int up) {
+double FirstStrategy::calculateDifference(int down, int up) {
     std::vector<Record> records = getInstrument()->getRecords();
     Record record1 = records[down];
     Record record2 = records[up];
@@ -86,8 +86,8 @@ long double FirstStrategy::calculateDifference(int down, int up) {
     return value2 - value1;
 }
 
-long double FirstStrategy::sumOfDifference(std::vector<long double> tangens) {
-    long double sumOfDifference = 0;
+double FirstStrategy::sumOfDifference(std::vector<double> tangens) {
+    double sumOfDifference = 0;
     int index = 0;
     int firstChange = lookForChange(tangens, index);
 
@@ -119,13 +119,13 @@ Price FirstStrategy::lastStatus() {
     if (records.size() >= 2) {
         const Record& record1 = *(std::prev(records.end(), 2)); // Second to last record
         const Record &record2 = records.back();                       // Last record
-        long double tangent = calculateTangens(record1, record2);
+        double tangent = calculateTangens(record1, record2);
         return status(tangent);
     }
     return STILL;
 }
 
-std::tuple<int, int, int> FirstStrategy::getNumberOfStatus(std::vector<long double> tangents) {
+std::tuple<int, int, int> FirstStrategy::getNumberOfStatus(std::vector<double> tangents) {
     int numChanges = 0;
     int numIncreases = 0;
     int numDecreases = 0;
@@ -172,7 +172,7 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
     double fallChance = 0.0;
     double maintenanceChance = 0.0;
 
-    std::vector<long double> tangents = listOfTangens();
+    std::vector<double> tangents = listOfTangens();
     std::tuple<int, int, int> changesInState = getNumberOfStatus(tangents);
     int numChanges = std::get<0>(changesInState);
     int numIncreases = std::get<1>(changesInState);
@@ -180,11 +180,11 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
 
     double lastKnownValue = getInstrument()->getRecords().back().close;
 
-    long double totalDifference = sumOfDifference(tangents) * 100 / lastKnownValue;
+    double totalDifference = sumOfDifference(tangents) * 100 / lastKnownValue;
 
     if (numChanges > 0) {
-        riseChance = (static_cast<double>(numIncreases) / numChanges) * 100.0;
-        fallChance = (static_cast<double>(numDecreases) / numChanges) * 100.0;
+        riseChance = (numIncreases / numChanges) * 100.0;
+        fallChance = (numDecreases / numChanges) * 100.0;
         maintenanceChance = 100.0 - riseChance - fallChance;
     }
 
@@ -199,9 +199,9 @@ std::tuple<double, double, double> FirstStrategy::calculateChances() {
 
     // uwzględnić % wzrostów i spadków ceny względem zamykającej
     if (totalDifference > 0.0) {
-        riseChance += static_cast<double>(totalDifference);
+        riseChance += totalDifference;
     } else if (totalDifference < 0.0) {
-        fallChance -= static_cast<double>(totalDifference);
+        fallChance -= totalDifference;
     } else {
         maintenanceChance += 10.0;
     }

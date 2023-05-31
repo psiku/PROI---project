@@ -4,9 +4,9 @@
 
 #include "Record.h"
 
-Record::Record(time_t date, long double open, long double high, long double low, long double close, int volume) :
+Record::Record(time_t date, double open, double high, double low, double close, int volume) :
         date(date), open(open), high(high), low(low), close(close), volume(volume) {}
 
-long double Record::getAverage() const {
+double Record::getAverage() const {
     return (open + high + low + close) / 4;
 }

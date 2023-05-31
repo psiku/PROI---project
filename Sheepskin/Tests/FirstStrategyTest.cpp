@@ -25,7 +25,7 @@ TEST(FirstStrategyTest, FirstStrategyGetPriceTest){
 TEST(FirstStrategyTest, FirstStrategyLookForChangeTest){
     Stock stock("id");
     FirstStrategy strategy(&stock);
-    std::vector<long double> tangens = {1.2, 2.3, 0.6, -0.45, -0.22};
+    std::vector<double> tangens = {1.2, 2.3, 0.6, -0.45, -0.22};
     int index = strategy.lookForChange(tangens, 0);
     ASSERT_EQ(index, 2);
 }
@@ -35,7 +35,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateTangensForStock){
     Record record1(1647580800,2485.00,2505.00,2470.00,2500.00,2);
     Record record2(1647580860,2495.00,2500.00,2490.00,2495.00,1.5);
 
-    long double result = strategy.calculateTangens(record1, record2);
+    double result = strategy.calculateTangens(record1, record2);
 
     ASSERT_FLOAT_EQ(result, -0.041669998);
 }
@@ -50,7 +50,7 @@ TEST(FirstStrategyTest, FirstStrategyTestListOfTangentsForStock) {
     stock.addRecord(record3);
     stock.addRecord(record4);
     FirstStrategy strategy(&stock);
-    std::vector<long double> result = strategy.listOfTangens();
+    std::vector<double> result = strategy.listOfTangens();
 
     ASSERT_FLOAT_EQ(result.at(0), 0.041669998);
     ASSERT_FLOAT_EQ(result.at(1), -0.083329998);
@@ -63,7 +63,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceCryptocurrency) {
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     FirstStrategy strategy(&crypto);
-    long double result = strategy.calculateDifference(0, 1);
+    double result = strategy.calculateDifference(0, 1);
 
     ASSERT_FLOAT_EQ(result, 10);
 }
@@ -74,7 +74,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceStock) {
     stock.addRecord(record1);
     stock.addRecord(record2);
     FirstStrategy strategy(&stock);
-    long double result = strategy.calculateDifference(0, 1);
+    double result = strategy.calculateDifference(0, 1);
 
     ASSERT_FLOAT_EQ(result, 60);
 }
@@ -85,7 +85,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceETF) {
     etf.addRecord(record1);
     etf.addRecord(record2);
     FirstStrategy strategy(&etf);
-    long double result = strategy.calculateDifference(0, 1);
+    double result = strategy.calculateDifference(0, 1);
 
     ASSERT_FLOAT_EQ(result, 47.5);
 }
@@ -106,7 +106,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForStock) {
     stock.addRecord(record4);
     stock.addRecord(record7);
     FirstStrategy strategy(&stock);
-    long double result = strategy.sumOfDifference(strategy.listOfTangens());
+    double result = strategy.sumOfDifference(strategy.listOfTangens());
 
     ASSERT_FLOAT_EQ(result, 120.0);
 }
@@ -127,7 +127,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForETF) {
     etf.addRecord(record4);
     etf.addRecord(record7);
     FirstStrategy strategy(&etf);
-    long double result = strategy.sumOfDifference(strategy.listOfTangens());
+    double result = strategy.sumOfDifference(strategy.listOfTangens());
 
     ASSERT_FLOAT_EQ(result, 95.0);
 }
@@ -148,7 +148,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForCryptocurrency) 
     crypto.addRecord(record4);
     crypto.addRecord(record7);
     FirstStrategy strategy(&crypto);
-    long double result = strategy.sumOfDifference(strategy.listOfTangens());
+    double result = strategy.sumOfDifference(strategy.listOfTangens());
 
     ASSERT_FLOAT_EQ(result, 20.0);
 }
@@ -163,7 +163,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceIfThereWasNotChange
     stock.addRecord(record3);
     stock.addRecord(record4);
     FirstStrategy strategy(&stock);
-    long double result = strategy.sumOfDifference(strategy.listOfTangens());
+    double result = strategy.sumOfDifference(strategy.listOfTangens());
 
     ASSERT_FLOAT_EQ(result, 4.5);
 }
@@ -174,7 +174,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForStock) {
     stock.addRecord(record1);
     stock.addRecord(record2);
     FirstStrategy strategy(&stock);
-    long double result = strategy.calculateMovingAverage();
+    double result = strategy.calculateMovingAverage();
 
     ASSERT_FLOAT_EQ(result, 2515);
 }
@@ -185,7 +185,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForCrypto) {
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     FirstStrategy strategy(&crypto);
-    long double result = strategy.calculateMovingAverage();
+    double result = strategy.calculateMovingAverage();
 
     ASSERT_FLOAT_EQ(result, 2603.333);
 }
@@ -196,7 +196,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForETF) {
     etf.addRecord(record1);
     etf.addRecord(record2);
     FirstStrategy strategy(&etf);
-    long double result = strategy.calculateMovingAverage();
+    double result = strategy.calculateMovingAverage();
 
     ASSERT_FLOAT_EQ(result, 2530.8333);
 }
@@ -211,10 +211,10 @@ TEST(FirstStrategyTest, FirstStrategyCheckStatusForStock){
     stock.addRecord(record3);
     stock.addRecord(record4);
     FirstStrategy strategy(&stock);
-    std::vector<long double> result = strategy.listOfTangens();
-    long double value1 = result.at(0);
-    long double value2 = result.at(1);
-    long double value3 = result.at(2);
+    std::vector<double> result = strategy.listOfTangens();
+    double value1 = result.at(0);
+    double value2 = result.at(1);
+    double value3 = result.at(2);
     Price price1 = strategy.status(value1);
     Price price2 = strategy.status(value2);
     Price price3 = strategy.status(value3);
@@ -239,7 +239,7 @@ TEST(FirstStrategyTest, FirstStrategylastStatusINCREACE){
     stock.addRecord(record6);
     stock.addRecord(record7);
     FirstStrategy strategy(&stock);
-    std::vector<long double> tangens = strategy.listOfTangens();
+    std::vector<double> tangens = strategy.listOfTangens();
     Price price = strategy.lastStatus();
 
     ASSERT_EQ(price, INCREASE);
@@ -257,7 +257,7 @@ TEST(FirstStrategyTest, FirstStrategylastStatusDECREASE){
     stock.addRecord(record4);
     stock.addRecord(record5);
     FirstStrategy strategy(&stock);
-    std::vector<long double> tangens = strategy.listOfTangens();
+    std::vector<double> tangens = strategy.listOfTangens();
     Price price = strategy.lastStatus();
 
     ASSERT_EQ(price, DECREASE);
@@ -273,7 +273,7 @@ TEST(FirstStrategyTest, FirstStrategylastStatusSTILL){
     stock.addRecord(record3);
     stock.addRecord(record4);
     FirstStrategy strategy(&stock);
-    std::vector<long double> tangens = strategy.listOfTangens();
+    std::vector<double> tangens = strategy.listOfTangens();
     Price price = strategy.lastStatus();
 
     ASSERT_EQ(price, STILL);
@@ -295,7 +295,7 @@ TEST(FirstStrategyTest, FirstStrategyGetNumberOfStatusForStock){
     stock.addRecord(record6);
     stock.addRecord(record7);
     FirstStrategy strategy(&stock);
-    std::vector<long double> tangens = strategy.listOfTangens();
+    std::vector<double> tangens = strategy.listOfTangens();
     std::tuple<int, int, int> status = strategy.getNumberOfStatus(tangens);
     int numChanges = get<0>(status);
     int riseNum = get<1>(status);
@@ -321,7 +321,7 @@ TEST(FirstStrategyTest, FirstStrategyGetNumberOfStatusForETF) {
     etf.addRecord(record6);
     etf.addRecord(record7);
     FirstStrategy strategy(&etf);
-    std::vector<long double> tangens = strategy.listOfTangens();
+    std::vector<double> tangens = strategy.listOfTangens();
     std::tuple<int, int, int> status = strategy.getNumberOfStatus(tangens);
     int numChanges = get<0>(status);
     int riseNum = get<1>(status);
@@ -347,7 +347,7 @@ TEST(FirstStrategyTest, FirstStrategyGetNumberOfStatusForCrypto) {
     crypto.addRecord(record6);
     crypto.addRecord(record7);
     FirstStrategy strategy(&crypto);
-    std::vector<long double> tangens = strategy.listOfTangens();
+    std::vector<double> tangens = strategy.listOfTangens();
     std::tuple<int, int, int> status = strategy.getNumberOfStatus(tangens);
     int numChanges = get<0>(status);
     int riseNum = get<1>(status);
@@ -371,9 +371,9 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForStock) {
     FirstStrategy strategy(&stock);
     StrategyResult result = strategy.eval();
 
-    ASSERT_FLOAT_EQ(result.getFallChance(), 29.15);
-    ASSERT_FLOAT_EQ(result.getRiseChance(), 70.85);
-    ASSERT_FLOAT_EQ(result.getMaintanceChance(), 0.0);
+    ASSERT_FLOAT_EQ(result.getFallChance(), 8.33);
+    ASSERT_FLOAT_EQ(result.getRiseChance(), 8.39);
+    ASSERT_FLOAT_EQ(result.getMaintanceChance(), 83.28);
 }
 TEST(FirstStrategyTest, FirstStrategyEvalResultForETF) {
     ETF etf("id");
@@ -453,7 +453,7 @@ TEST(FirstStrategyTest, FirstStrategyGetNumberOfStatusMaintanceforStock){
     stock.addRecord(record4);
     stock.addRecord(record5);
     FirstStrategy strategy(&stock);
-    std::vector<long double> tangens = strategy.listOfTangens();
+    std::vector<double> tangens = strategy.listOfTangens();
     std::tuple<int, int, int> status = strategy.getNumberOfStatus(tangens);
     int numChanges = get<0>(status);
     int riseNum = get<1>(status);

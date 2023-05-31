@@ -33,7 +33,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateTangensForStock){
     Stock stock("id");
     FirstStrategy strategy(&stock);
     Record record1(1647580800,2485.00,2505.00,2470.00,2500.00,2);
-    Record record2(1647580860,2495.00,2500.00,2490.00,2495.00,1.5);
+    Record record2(1647580860,2495.00,2500.00,2490.00,2495.00,1);
 
     double result = strategy.calculateTangens(record1, record2);
 
@@ -42,9 +42,9 @@ TEST(FirstStrategyTest, FirstStrategyCalculateTangensForStock){
 TEST(FirstStrategyTest, FirstStrategyTestListOfTangentsForStock) {
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2500.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2480.00, 2500.00, 2470.00, 2500.00, 1.5);
-    Record record3(1647580920, 2490.00, 2500.00, 2470.00, 2500.00, 1.0);
-    Record record4(1647580980, 2490.00, 2500.00, 2470.00, 2500.00, 0.5);
+    Record record2(1647580860, 2480.00, 2500.00, 2470.00, 2500.00, 1);
+    Record record3(1647580920, 2490.00, 2500.00, 2470.00, 2500.00, 1);
+    Record record4(1647580980, 2490.00, 2500.00, 2470.00, 2500.00, 5);
     stock.addRecord(record1);
     stock.addRecord(record2);
     stock.addRecord(record3);
@@ -59,7 +59,7 @@ TEST(FirstStrategyTest, FirstStrategyTestListOfTangentsForStock) {
 TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceCryptocurrency) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 15);
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     FirstStrategy strategy(&crypto);
@@ -70,7 +70,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceCryptocurrency) {
 TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceStock) {
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 15);
     stock.addRecord(record1);
     stock.addRecord(record2);
     FirstStrategy strategy(&stock);
@@ -81,7 +81,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceStock) {
 TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceETF) {
     ETF etf("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 2);
     etf.addRecord(record1);
     etf.addRecord(record2);
     FirstStrategy strategy(&etf);
@@ -92,12 +92,12 @@ TEST(FirstStrategyTest, FirstStrategyCalculateDifferenceETF) {
 TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForStock) {
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2520.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2530.00, 0.5);
-    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 0.0);
-    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, -0.5);
-    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, -1.0);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2520.00, 2);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2530.00, 3);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 3);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, 2);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, 1);
     stock.addRecord(record1);
     stock.addRecord(record2);
     stock.addRecord(record3);
@@ -113,12 +113,12 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForStock) {
 TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForETF) {
     ETF etf("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2520.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2530.00, 0.5);
-    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 0.0);
-    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, -0.5);
-    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, -1.0);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 7);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2520.00, 2);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2530.00, 7);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 4);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, 6);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, 6);
     etf.addRecord(record1);
     etf.addRecord(record2);
     etf.addRecord(record3);
@@ -134,12 +134,12 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForETF) {
 TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForCryptocurrency) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2520.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2530.00, 0.5);
-    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 0.0);
-    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, -0.5);
-    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, -1.0);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 2);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2520.00, 1);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2530.00, 2);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 1);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, 5);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, 5);
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     crypto.addRecord(record3);
@@ -155,12 +155,12 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForCryptocurrency) 
 TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForCryptocurrencyNoSecondChange) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2520.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2530.00, 0.5);
-    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2520.00, 0.0);
-    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2500.00, -0.5);
-    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2400.00, -1.0);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 5);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2520.00, 1);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2530.00, 5);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2520.00, 8);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2500.00, 1);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2400.00, 1);
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     crypto.addRecord(record3);
@@ -191,7 +191,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceIfThereWasNotChange
 TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForStock) {
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1);
     stock.addRecord(record1);
     stock.addRecord(record2);
     FirstStrategy strategy(&stock);
@@ -202,7 +202,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForStock) {
 TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForCrypto) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1);
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     FirstStrategy strategy(&crypto);
@@ -213,7 +213,7 @@ TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForCrypto) {
 TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForETF) {
     ETF etf("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1);
     etf.addRecord(record1);
     etf.addRecord(record2);
     FirstStrategy strategy(&etf);
@@ -224,9 +224,9 @@ TEST(FirstStrategyTest, FirstStrategyCalculateMovingAverageForETF) {
 TEST(FirstStrategyTest, FirstStrategyCheckStatusForStock){
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2500.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2480.00, 2500.00, 2470.00, 2500.00, 1.5);
-    Record record3(1647580920, 2490.00, 2500.00, 2470.00, 2500.00, 1.0);
-    Record record4(1647580980, 2490.00, 2500.00, 2470.00, 2500.00, 0.5);
+    Record record2(1647580860, 2480.00, 2500.00, 2470.00, 2500.00, 1);
+    Record record3(1647580920, 2490.00, 2500.00, 2470.00, 2500.00, 1);
+    Record record4(1647580980, 2490.00, 2500.00, 2470.00, 2500.00, 0);
     stock.addRecord(record1);
     stock.addRecord(record2);
     stock.addRecord(record3);
@@ -246,12 +246,12 @@ TEST(FirstStrategyTest, FirstStrategyCheckStatusForStock){
 TEST(FirstStrategyTest, FirstStrategylastStatusINCREACE){
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2560.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2560.00, 0.5);
-    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 0.0);
-    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, -0.5);
-    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, -1.0);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2560.00, 1);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2560.00, 0);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 1);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, 1);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, 1);
     stock.addRecord(record1);
     stock.addRecord(record2);
     stock.addRecord(record3);
@@ -268,10 +268,10 @@ TEST(FirstStrategyTest, FirstStrategylastStatusINCREACE){
 TEST(FirstStrategyTest, FirstStrategylastStatusDECREASE){
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2560.00, 1.0);
-    Record record4(1647580980, 2725.00, 2755.00, 2720.00, 2550.00, 0.5);
-    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 0.0);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2560.00, 1);
+    Record record4(1647580980, 2725.00, 2755.00, 2720.00, 2550.00, 0);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 0);
     stock.addRecord(record1);
     stock.addRecord(record2);
     stock.addRecord(record3);
@@ -286,9 +286,9 @@ TEST(FirstStrategyTest, FirstStrategylastStatusDECREASE){
 TEST(FirstStrategyTest, FirstStrategylastStatusSTILL){
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
-    Record record3(1647580920, 2665.00, 2685.00, 2650.00, 2560.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2560.00, 0.5);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1);
+    Record record3(1647580920, 2665.00, 2685.00, 2650.00, 2560.00, 1);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2560.00, 1);
     stock.addRecord(record1);
     stock.addRecord(record2);
     stock.addRecord(record3);
@@ -302,12 +302,12 @@ TEST(FirstStrategyTest, FirstStrategylastStatusSTILL){
 TEST(FirstStrategyTest, FirstStrategyGetNumberOfStatusForStock){
     Stock stock("id");
     Record record1(1647580800, 60, 200, 10, 50, 2);
-    Record record2(1647580860, 70, 200, 10, 50, 1.5);
-    Record record3(1647580920, 80, 200, 10, 50, 1.0);
-    Record record4(1647580980, 90, 200, 10, 50, 0.5);
-    Record record5(1647581040, 70, 200, 10, 50, 0.0);
-    Record record6(1647581100, 50, 200, 10, 50, -0.5);
-    Record record7(1647581160, 50, 200, 10, 50, -1.0);
+    Record record2(1647580860, 70, 200, 10, 50, 1);
+    Record record3(1647580920, 80, 200, 10, 50, 1);
+    Record record4(1647580980, 90, 200, 10, 50, 5);
+    Record record5(1647581040, 70, 200, 10, 50, 5);
+    Record record6(1647581100, 50, 200, 10, 50, 5);
+    Record record7(1647581160, 50, 200, 10, 50, 1);
     stock.addRecord(record1);
     stock.addRecord(record2);
     stock.addRecord(record3);
@@ -328,12 +328,12 @@ TEST(FirstStrategyTest, FirstStrategyGetNumberOfStatusForStock){
 TEST(FirstStrategyTest, FirstStrategyGetNumberOfStatusForETF) {
     ETF etf("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2560.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2560.00, 0.5);
-    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 0.0);
-    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, -0.5);
-    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, -1.0);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2560.00, 1.);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2560.00, 0);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 2);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2550.00, 5);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, 6);
     etf.addRecord(record1);
     etf.addRecord(record2);
     etf.addRecord(record3);
@@ -354,12 +354,12 @@ TEST(FirstStrategyTest, FirstStrategyGetNumberOfStatusForETF) {
 TEST(FirstStrategyTest, FirstStrategyGetNumberOfStatusForCrypto) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2560.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2560.00, 0.5);
-    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 0.0);
-    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2540.00, -0.5);
-    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, -1.0);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 3);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2560.00, 1);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2560.00, 4);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2540.00, 4);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2540.00, 5);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2560.00, 5);
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     crypto.addRecord(record3);
@@ -399,12 +399,12 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForStock) {
 TEST(FirstStrategyTest, FirstStrategyEvalResultForETF) {
     ETF etf("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
-    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2620.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2630.00, 0.5);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2620.00, 1.);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2630.00, 5);
     Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2640.00, 0.0);
-    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2650.00, -0.5);
-    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2660.00, -1.0);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2650.00, 7);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2660.00, 8);
     etf.addRecord(record1);
     etf.addRecord(record2);
     etf.addRecord(record3);
@@ -422,12 +422,12 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForETF) {
 TEST(FirstStrategyTest, FirstStrategyEvalResultForCrypto) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2600.00, 2);
-    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1.5);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2610.00, 1);
     Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2620.00, 1.0);
-    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2630.00, 0.5);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2630.00, 1);
     Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2640.00, 0.0);
-    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2650.00, -0.5);
-    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2660.00, -1.0);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2650.00, 1);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2660.00, 1);
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     crypto.addRecord(record3);

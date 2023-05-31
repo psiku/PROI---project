@@ -43,7 +43,7 @@ public:
         friend bool operator==(const Iterator& a, const Iterator& b) { return a.m_ptr == b.m_ptr; } // compares two iterators for equality, returns true if they point to the same element, and false otherwise.
         friend bool operator!=(const Iterator& a, const Iterator& b) { return a.m_ptr != b.m_ptr; } // compares two iterators for inequality, returns true if they point to different elements, and false if they point to the same element.
 
-        
+
     private:
         pointer m_ptr;
     };

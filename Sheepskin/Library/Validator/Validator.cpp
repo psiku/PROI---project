@@ -17,5 +17,7 @@ bool Validator::checkDateRepetition(const Instrument &instrument) {
 }
 
 bool Validator::validate(const Instrument& instrument) {
-    return false;
+    return checkPrice(instrument)
+        && checkBorderPrices(instrument)
+        && checkDateRepetition(instrument);
 }

@@ -18,7 +18,13 @@ bool Validator::checkBorderPrices(Instrument &instrument) {
 }
 
 bool Validator::checkDateRepetition(Instrument &instrument) {
-    return false;
+    std::vector<time_t> dates;
+    for(auto record : instrument) {
+        dates.push_back(record.date);
+    }
+
+    std::sort(dates.begin(), dates.end());
+    return std::adjacent_find(dates.begin(), dates.end()) == dates.end();
 }
 
 bool Validator::validate(Instrument& instrument) {

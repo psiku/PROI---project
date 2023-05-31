@@ -21,8 +21,7 @@ TEST(ValidatorTests, ValidateInstrument) {
     crypto.addRecord(record4);
     crypto.addRecord(record5);
 
-    Validator validator;
-    bool result = validator.validate(crypto);
+    bool result = Validator::validate(crypto);
     ASSERT_TRUE(result);
 }
 TEST(ValidatorTests, InvalidInstrument) {
@@ -38,8 +37,7 @@ TEST(ValidatorTests, InvalidInstrument) {
     crypto.addRecord(record4);
     crypto.addRecord(record5);
 
-    Validator validator;
-    bool result = validator.validate(crypto);
+    bool result = Validator::validate(crypto);
     ASSERT_FALSE(result);
 }
 TEST(ValidatorTests, ValidBorderPricesTest) {
@@ -51,8 +49,7 @@ TEST(ValidatorTests, ValidBorderPricesTest) {
     crypto.addRecord(record2);
     crypto.addRecord(record3);
 
-    Validator validator;
-    bool result = validator.checkBorderPrices(crypto);
+    bool result = Validator::checkBorderPrices(crypto);
     ASSERT_TRUE(result);
 }
 TEST(ValidatorTests, InvalidBorderPricesTest) {
@@ -64,8 +61,7 @@ TEST(ValidatorTests, InvalidBorderPricesTest) {
     crypto.addRecord(record2);
     crypto.addRecord(record3);
 
-    Validator validator;
-    bool result = validator.checkBorderPrices(crypto);
+    bool result = Validator::checkBorderPrices(crypto);
     ASSERT_FALSE(result);
 }
 TEST(ValidatorTests, ValidPriceTest) {
@@ -76,8 +72,8 @@ TEST(ValidatorTests, ValidPriceTest) {
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     crypto.addRecord(record3);
-    Validator validator;
-    bool result = validator.checkBorderPrices(crypto);
+
+    bool result = Validator::checkPrice(crypto);
     ASSERT_TRUE(result);
 }
 TEST(ValidatorTests, InvalidPriceTest) {
@@ -88,8 +84,8 @@ TEST(ValidatorTests, InvalidPriceTest) {
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     crypto.addRecord(record3);
-    Validator validator;
-    bool result = validator.checkBorderPrices(crypto);
+
+    bool result = Validator::checkPrice(crypto);
     ASSERT_FALSE(result);
 }
 TEST(ValidatorTests, ValidDateTest) {
@@ -100,8 +96,8 @@ TEST(ValidatorTests, ValidDateTest) {
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     crypto.addRecord(record3);
-    Validator validator;
-    bool result = validator.checkBorderPrices(crypto);
+
+    bool result = Validator::checkDateRepetition(crypto);
     ASSERT_TRUE(result);
 }
 TEST(ValidatorTests, InvalidDateTest) {
@@ -112,7 +108,7 @@ TEST(ValidatorTests, InvalidDateTest) {
     crypto.addRecord(record1);
     crypto.addRecord(record2);
     crypto.addRecord(record3);
-    Validator validator;
-    bool result = validator.checkBorderPrices(crypto);
+
+    bool result = Validator::checkDateRepetition(crypto);
     ASSERT_FALSE(result);
 }

@@ -40,8 +40,9 @@ public:
         pointer operator->() { return m_ptr; }          // returns the raw pointer the iterator is holding
         Iterator& operator++() { m_ptr++; return *this; } // prefix increment operator (++it), moves the iterator to the next element and returns a reference to the updated iterator.
         Iterator operator++(int) { Iterator tmp = *this; ++(*this); return tmp; } // Postfix increment operator (it++),creates a temporary copy of the iterator, moves the iterator to the next element, and returns the temporary copy.
-        friend bool operator==(const Iterator& a, const Iterator& b) { return a.m_ptr == b.m_ptr; }
-        friend bool operator!=(const Iterator& a, const Iterator& b) { return a.m_ptr != b.m_ptr; }
+        friend bool operator==(const Iterator& a, const Iterator& b) { return a.m_ptr == b.m_ptr; } // compares two iterators for equality, returns true if they point to the same element, and false otherwise.
+        friend bool operator!=(const Iterator& a, const Iterator& b) { return a.m_ptr != b.m_ptr; } // compares two iterators for inequality, returns true if they point to different elements, and false if they point to the same element.
+
 
     private:
         pointer m_ptr;

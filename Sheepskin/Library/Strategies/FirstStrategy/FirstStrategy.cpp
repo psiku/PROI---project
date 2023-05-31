@@ -108,7 +108,7 @@ double FirstStrategy::sumOfDifference(std::vector<double> tangens) {
             firstChange = lookForChange(tangens, index);
         }
         else{
-            return sumOfDifference;
+            return calculateDifference(firstChange + 1, tangens.size());
         }
     }
     return sumOfDifference;
@@ -122,7 +122,6 @@ Price FirstStrategy::lastStatus() {
         double tangent = calculateTangens(record1, record2);
         return status(tangent);
     }
-    return STILL;
 }
 
 std::tuple<int, int, int> FirstStrategy::getNumberOfStatus(std::vector<double> tangents) {

@@ -152,6 +152,27 @@ TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForCryptocurrency) 
 
     ASSERT_FLOAT_EQ(result, 20.0);
 }
+TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceForCryptocurrencyNoSecondChange) {
+    CryptoCurrency crypto("id");
+    Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);
+    Record record2(1647580860, 2545.00, 2565.00, 2530.00, 2510.00, 1.5);
+    Record record3(1647580920, 2605.00, 2625.00, 2590.00, 2520.00, 1.0);
+    Record record4(1647580980, 2665.00, 2685.00, 2650.00, 2530.00, 0.5);
+    Record record5(1647581040, 2725.00, 2745.00, 2710.00, 2520.00, 0.0);
+    Record record6(1647581100, 2785.00, 2805.00, 2770.00, 2500.00, -0.5);
+    Record record7(1647581160, 2845.00, 2865.00, 2830.00, 2400.00, -1.0);
+    crypto.addRecord(record1);
+    crypto.addRecord(record2);
+    crypto.addRecord(record3);
+    crypto.addRecord(record6);
+    crypto.addRecord(record5);
+    crypto.addRecord(record4);
+    crypto.addRecord(record7);
+    FirstStrategy strategy(&crypto);
+    double result = strategy.sumOfDifference(strategy.listOfTangens());
+
+    ASSERT_FLOAT_EQ(result, -130.0);
+}
 TEST(FirstStrategyTest, FirstStrategyCalculateSumOfDifferenceIfThereWasNotChangeInState) {
     Stock stock("id");
     Record record1(1647580800, 2485.00, 2505.00, 2470.00, 2500.00, 2);

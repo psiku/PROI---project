@@ -88,7 +88,7 @@ TEST(ValidatorTests, InvalidPriceTest) {
     bool result = Validator::checkPrice(crypto);
     ASSERT_FALSE(result);
 }
-TEST(ValidatorTests, ValidDateTest) {
+TEST(ValidatorTests, ValidDateRepetitonTest) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 135.45, 200, 100, 175.25, 1000);
     Record record2(1647580860, -130.45, 200, 100, 175.25, 500);
@@ -100,7 +100,7 @@ TEST(ValidatorTests, ValidDateTest) {
     bool result = Validator::checkDateRepetition(crypto);
     ASSERT_TRUE(result);
 }
-TEST(ValidatorTests, InvalidDateTest) {
+TEST(ValidatorTests, InvalidDateRepetitionTest) {
     CryptoCurrency crypto("id");
     Record record1(1647580800, 135.45, 200, 100, 175.25, 1000);
     Record record2(1647580800, -130.45, 200, 100, 175.25, 500);
@@ -110,5 +110,30 @@ TEST(ValidatorTests, InvalidDateTest) {
     crypto.addRecord(record3);
 
     bool result = Validator::checkDateRepetition(crypto);
+    ASSERT_FALSE(result);
+}
+
+TEST(ValidatorTests, ValidDateOrderTest) {
+    CryptoCurrency crypto("id");
+    Record record1(1647580800, 135.45, 200, 100, 175.25, 1000);
+    Record record2(1647580810, -130.45, 200, 100, 175.25, 500);
+    Record record3(1647580920, 125.45, 200, 100, 175.25, 750);
+    crypto.addRecord(record1);
+    crypto.addRecord(record2);
+    crypto.addRecord(record3);
+
+    bool result = Validator::checkDateOrder(crypto);
+    ASSERT_TRUE(result);
+}
+TEST(ValidatorTests, InvalidDateOrderTest) {
+    CryptoCurrency crypto("id");
+    Record record1(1647580890, 135.45, 200, 100, 175.25, 1000);
+    Record record2(1647580880, -130.45, 200, 100, 175.25, 500);
+    Record record3(1647580970, 125.45, 200, 100, 175.25, 750);
+    crypto.addRecord(record1);
+    crypto.addRecord(record2);
+    crypto.addRecord(record3);
+
+    bool result = Validator::checkDateOrder(crypto);
     ASSERT_FALSE(result);
 }

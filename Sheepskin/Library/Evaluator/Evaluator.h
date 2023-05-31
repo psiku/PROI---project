@@ -5,11 +5,13 @@
 #ifndef SHEEPSKIN_EVALUATOR_H
 #define SHEEPSKIN_EVALUATOR_H
 
-
-#include "../Strategies/Strategy/Strategy.h"
 #include "../Context/Context.h"
+#include "../Strategies/Strategy/Strategy.h"
+#include "../Strategies/Strategy/StrategyType.h"
 
 class Evaluator {
+private:
+    static static StrategyType chose(Instrument *instrument);
 public:
     Evaluator() = default;
     void handle(Context* context, Instrument *instrument);

@@ -11,7 +11,7 @@
 class SecondStrategy: public Strategy  {
 public:
     explicit SecondStrategy(Instrument* instrument);
-    Forecast eval();
+    Forecast eval() override;
 };
 
 

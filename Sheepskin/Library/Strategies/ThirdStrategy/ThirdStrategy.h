@@ -10,8 +10,8 @@
 
 class ThirdStrategy: public Strategy {
 public:
-    ThirdStrategy();
-    Forecast eval();
+    explicit ThirdStrategy(Instrument* instrument);
+    Forecast eval() override;
 };
 
 

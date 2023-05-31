@@ -33,3 +33,12 @@ bool Validator::validate(Instrument& instrument) {
         && checkDateRepetition(instrument);
 }
 
+bool Validator::checkPrice(Instrument &instrument) {
+    for(auto record : instrument){
+        if(record.open >= 0 && record.high >= 0 && record.low >= 0 && record.close >= 0){
+            return true;
+        }
+    }
+    return false;
+}
+

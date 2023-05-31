@@ -5,6 +5,7 @@
 #include "Data/Instrument/Instrument/Instrument.h"
 #include "Data/CSVReader/CSVReader/CSVReader.h"
 #include "Strategies/Strategy/Strategy.h"
+#include "Data/CSVReader/Mapper/Mapper.h"
 
 int main() {
 //    std::cout << "Hello, World!" << std::endl;
@@ -58,7 +59,27 @@ int main() {
     stock.addRecord(record1);
     stock.addRecord(record2);
     stock.addRecord(record3);
-    FirstStrategy strategy(stock);
+    //FirstStrategy strategy(stock);
+
+    std::ifstream file;
+    file.open("../../Data/example.csv");
+//    return 0;
+    CSVReader<std::string, std::string, time_t, long double, long double, long double, long double, long double> reader;
+    //134.50,135.75,133.90,135.25,1000
+    auto res = reader.read(file);
+//    reader.read(file);
+    while(!res.end()) {
+        auto row = res.getRow();
+        time_t date = Mapper<time_t>().translate(row[2]);
+        long double open = Mapper<long double>().translate(row[3]);
+        long double high = Mapper<long double>().translate(row[4]);
+        long double low = Mapper<long double>().translate(row[5]);
+        long double close = Mapper<long double>().translate(row[6]);
+        int volume = Mapper<long double>().translate(row[7]);
+        Record rec(date, open, high, low, close, volume);
+        std::cout << '\n';
+    }
+//    reader.getMapped();
 
 
     return 0;

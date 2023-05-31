@@ -13,13 +13,28 @@
 //template <class ...Types>
 //CSVResult<Types...>::CSVResult(std::vector<std::tuple<Types...>> data): data(data) {};
 
-template <class ...Types>
-std::tuple<Types...> CSVResult<Types...>::readline() {
-//    if(index != data.size())
-        return data[index++];
+//template <class ...Types>
+//std::tuple<Types...> CSVResult<Types...>::readline() {
+////    if(index != data.size())
+//        return data[index++];
+//
+//}
 
+template <class ...Types>
+std::vector<std::string> CSVResult<Types...>::getRow() {
+    std::vector<std::string> row;
+    for(int i = 0; i < data.size(); i++) {
+        row.emplace_back(data[i][index]);
+    }
+    index++;
+    return row;
 }
 
+
+template <class ...Types>
+bool CSVResult<Types...>::end() {
+    return index >= data[0].size();
+}
 //template <class ...Types>
 //T CSVResult<T>::map_to_obj() {
 //    std::vector<Record> records;

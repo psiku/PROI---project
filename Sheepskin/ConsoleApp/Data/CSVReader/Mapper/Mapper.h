@@ -10,12 +10,11 @@
 
 template <class T>
 class Mapper {
-    std::vector<std::string> column;
 public:
 //    Mapper();
-    Mapper(std::vector<std::string> column);
+    Mapper() = default;
     void addColumn(std::vector<std::string> column);
-    std::vector<T> translate();
+    T translate(std::string val);
 };
 //#include "Mapper.cpp"
 //
@@ -36,53 +35,28 @@ void Mapper<T>::addColumn(std::vector<std::string> column) {
     this->column = column;
 }
 
-template <class T>
-Mapper<T>::Mapper(std::vector<std::string> column): column(column) {
-//    std::cout << "Column: \n";
-//    for(std::string s:column) {
-//        std::cout << s << " ";
-//    }
-//    std::cout << '\n';
-};
-
 template <>
-std::vector<int> Mapper<int>::translate() {
-    std::cout << "int\n" << std::endl;
-    std::vector<int> ans;
-    for(std::string str:column) {
-        ans.emplace_back(std::stoi(str)) ;
-    }
-    std::cout << ans[0];
-    return ans;
+int Mapper<int>::translate(std::string val) {
+    return std::stoi(val);
 }
 
 template <>
-std::vector<long double> Mapper<long double>::translate() {
-    std::cout << "long double\n" << std::endl;
-    std::vector<long double> ans;
-    for(std::string str:column) {
-        ans.emplace_back(std::stold(str)) ;
-    }
-    return ans;
+long double Mapper<long double>::translate(std::string val) {
+    std::cout << val << " ";
+    return std::stold(val);
 }
 template <>
-std::vector<time_t> Mapper<time_t>::translate() {
-    std::cout << "time_t\n" << std::endl;
-    std::vector<time_t> ans;
-    for(std::string str:column) {
-        struct std::tm tm;
-        std::istringstream ss(str);
-        ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S"); // or just %T in this case
-        std::time_t time = mktime(&tm);
-        ans.emplace_back(time) ;
-    }
-    return ans;
+time_t Mapper<time_t>::translate(std::string val) {
+    struct std::tm tm;
+    std::istringstream ss(val);
+    ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S"); // or just %T in this case
+    std::time_t time = mktime(&tm);
+    return time;
 }
 
 template<class T>
-std::vector<T> Mapper<T>::translate() {
-    std::cout << "different\n" << std::endl;
-    return column;
+T Mapper<T>::translate(std::string val) {
+    return val;
 }
 
 #endif //SHEEPSKIN_MAPPER_H

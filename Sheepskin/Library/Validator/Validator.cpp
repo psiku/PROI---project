@@ -4,9 +4,6 @@
 
 #include "Validator.h"
 
-bool Validator::validate(Instrument& instrument) {
-    return false;
-}
 
 bool Validator::checkBorderPrices(Instrument &instrument) {
     for(auto record : instrument){
@@ -19,3 +16,14 @@ bool Validator::checkBorderPrices(Instrument &instrument) {
     }
     return true;
 }
+
+bool Validator::checkDateRepetition(Instrument &instrument) {
+    return false;
+}
+
+bool Validator::validate(Instrument& instrument) {
+    return checkPrice(instrument)
+        && checkBorderPrices(instrument)
+        && checkDateRepetition(instrument);
+}
+

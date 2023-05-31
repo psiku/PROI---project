@@ -7,7 +7,7 @@
 
 #include <string>
 
-class Forecast {
+struct Forecast {
 private:
     double riseChance;
     double fallChance;

@@ -18,7 +18,7 @@ private:
     std::vector<std::string> split(std::string line);
 public:
     CSVReader() = default;
-    CSVResult<Types...> read(std::ifstream &file);
+    CSVResult read(std::ifstream &file);
 //    CSVResult<Types...> getMapped() {
 //        using CSVRow = std::tuple<Types...>;
 //        std::vector<CSVRow> vals(values[0].size());

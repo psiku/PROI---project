@@ -20,8 +20,7 @@
 //
 //}
 
-template <class ...Types>
-std::vector<std::string> CSVResult<Types...>::getRow() {
+std::vector<std::string> CSVResult::getRow() {
     std::vector<std::string> row;
     for(int i = 0; i < data.size(); i++) {
         row.emplace_back(data[i][index]);
@@ -31,8 +30,7 @@ std::vector<std::string> CSVResult<Types...>::getRow() {
 }
 
 
-template <class ...Types>
-bool CSVResult<Types...>::end() {
+bool CSVResult::end() {
     return index >= data[0].size();
 }
 //template <class ...Types>

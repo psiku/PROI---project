@@ -12,9 +12,9 @@
 class Stock: public Instrument {
 public:
         explicit Stock(std::string id);
-        long double getVolatility(const Record &record) override;
-        double getPrice(const Record &record) override;
-        double calculateMean(const Record &record);
+        double getVolatility(const Record &record) override;
+        double getPrice(const Record &record) override;     // returns calculateMean()
+        double calculateMean(const Record &record);         // return mean value of 4 prices (high, low, close, open)
 };
 
 

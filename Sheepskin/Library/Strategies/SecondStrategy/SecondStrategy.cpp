@@ -6,8 +6,6 @@
 
 SecondStrategy::SecondStrategy(Instrument* instrument) : Strategy(instrument) {}
 
-StrategyResult SecondStrategy::eval() {
-    StrategyResult result(0.8, 0., 0.0);
-
-    return result;
+Forecast SecondStrategy::eval() {
+    return {0.8, 0., 0.0};
 }

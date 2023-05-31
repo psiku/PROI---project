@@ -13,7 +13,7 @@
 //CSVReader<Types...>::CSVReader(std::string filename): filename(filename) {};
 
 template <class ...Types>
-CSVResult<Types...> CSVReader<Types...>::read(std::ifstream &file) {
+CSVResult CSVReader<Types...>::read(std::ifstream &file) {
 //    std::ifstream file;
 //    file.open(filename);
 
@@ -27,7 +27,7 @@ CSVResult<Types...> CSVReader<Types...>::read(std::ifstream &file) {
               columns[i].emplace_back(split(line)[i]);
         }
     }
-    return CSVResult<Types...>(columns);
+    return CSVResult(columns);
 //    return result;
 }
 

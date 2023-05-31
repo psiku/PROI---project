@@ -10,12 +10,12 @@
 
 Stock::Stock(std::string id): Instrument(id) {}
 
-long double Stock::getVolatility(const Record &record) {
+double Stock::getVolatility(const Record &record) {
     // Średnia odchylenia = (|Cena otwarcia - Średnia arytmetyczna| +
     // |Cena najwyższa - Średnia arytmetyczna| + |Cena najniższa - Średnia arytmetyczna| +
     // |Cena zamknięcia - Średnia arytmetyczna|) / 4
-    long double averageValue = record.getAverage();
-    long double averageVolatility = (std::abs(record.open - averageValue) + std::abs(record.close - averageValue)
+    double averageValue = record.getAverage();
+    double averageVolatility = (std::abs(record.open - averageValue) + std::abs(record.close - averageValue)
                                      + std::abs(record.low - averageValue) + std::abs(record.high - averageValue));
     return averageVolatility;
 }
@@ -25,7 +25,7 @@ double Stock::getPrice(const Record &record) {
 }
 
 double Stock::calculateMean(const Record &record) {
-    std::vector<long double> values = {record.open, record.high, record.low, record.close};
+    std::vector<double> values = {record.open, record.high, record.low, record.close};
     std::sort(values.begin(), values.end());
 
     return (values.at(1) + values.at(2)) / 2;

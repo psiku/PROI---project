@@ -12,13 +12,13 @@
 class Record {
 public:
     time_t date;
-    long double open;
-    long double high;
-    long double low;
-    long double close;
+    double open;
+    double high;
+    double low;
+    double close;
     int volume;
-    Record(time_t date, long double open, long double high, long double low, long double close, int volume);
-    long double getAverage() const;
+    Record(time_t date, double open, double high, double low, double close, int volume);
+    double getAverage() const;       // returns average value of 4 prices (high, low, close, open)
 };
 
 

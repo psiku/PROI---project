@@ -7,13 +7,14 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
-template <class T>
 class Mapper {
 public:
 //    Mapper();
     Mapper() = default;
-    void addColumn(std::vector<std::string> column);
+    std::vector<Instrument*> map(CSVResult);
+    template <class T>
     T translate(std::string val);
 };
 //#include "Mapper.cpp"
@@ -28,25 +29,18 @@ public:
 #include <vector>
 //#include "Mapper.h"
 
-
-template <class T>
-void Mapper<T>::addColumn(std::vector<std::string> column) {
-    std::cout << "am here\n";
-    this->column = column;
-}
-
 template <>
-int Mapper<int>::translate(std::string val) {
+int Mapper::translate<int>(std::string val) {
     return std::stoi(val);
 }
 
 template <>
-long double Mapper<long double>::translate(std::string val) {
+long double Mapper::translate<long double>(std::string val) {
     std::cout << val << " ";
     return std::stold(val);
 }
 template <>
-time_t Mapper<time_t>::translate(std::string val) {
+time_t Mapper::translate<time_t>(std::string val) {
     struct std::tm tm;
     std::istringstream ss(val);
     ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S"); // or just %T in this case
@@ -54,9 +48,15 @@ time_t Mapper<time_t>::translate(std::string val) {
     return time;
 }
 
-template<class T>
-T Mapper<T>::translate(std::string val) {
+template<>
+std::string Mapper::translate<std::string>(std::string val) {
     return val;
+}
+
+std::vector<Instrument*> map(CSVResult) {
+    std::map<std::string, Instrument*> instruments;
+
+    
 }
 
 #endif //SHEEPSKIN_MAPPER_H

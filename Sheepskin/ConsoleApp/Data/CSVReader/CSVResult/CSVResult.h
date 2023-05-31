@@ -10,7 +10,6 @@
 #include <unordered_map>
 #include <string>
 
-template <class ...Types>
 class CSVResult {
 private:
     int index = 0;

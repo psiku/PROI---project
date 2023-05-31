@@ -12,7 +12,7 @@ void Instrument::addRecord(const Record &record) {
     records.push_back(record);
 }
 
-long double Instrument::getVolatility(const Record &record) {
+double Instrument::getVolatility(const Record &record) {
     return 0.0;
 }
 

@@ -56,3 +56,17 @@ TEST(ValidatorTests, ValidBorderPricesTest) {
     bool result = validator.checkBorderPrices(record1);
     ASSERT_FALSE(result);
 }
+TEST(ValidatorTests, ValidPriceTest) {
+    Record record1(1647580800, 135.45, 200, 100, 175.25, 1000);
+
+    Validator validator;
+    bool result = validator.checkBorderPrices(record1);
+    ASSERT_TRUE(result);
+}
+TEST(ValidatorTests, InvalidPriceTest) {
+    Record record1(1647580800, -135.45, 1000, 200, 175.25, 1000);
+
+    Validator validator;
+    bool result = validator.checkBorderPrices(record1);
+    ASSERT_FALSE(result);
+}

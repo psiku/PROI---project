@@ -390,7 +390,7 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForStock) {
     stock.addRecord(record4);
     stock.addRecord(record5);
     FirstStrategy strategy(&stock);
-    Evaluation result = strategy.eval();
+    Forecast result = strategy.eval();
 
     ASSERT_FLOAT_EQ(result.getFallChance(), 8.33);
     ASSERT_FLOAT_EQ(result.getRiseChance(), 8.39);
@@ -413,7 +413,7 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForETF) {
     etf.addRecord(record6);
     etf.addRecord(record7);
     FirstStrategy strategy(&etf);
-    Evaluation result = strategy.eval();
+    Forecast result = strategy.eval();
 
     ASSERT_FLOAT_EQ(result.getFallChance(), 7.65);
     ASSERT_FLOAT_EQ(result.getRiseChance(), 92.35);
@@ -436,7 +436,7 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForCrypto) {
     crypto.addRecord(record6);
     crypto.addRecord(record7);
     FirstStrategy strategy(&crypto);
-    Evaluation result = strategy.eval();
+    Forecast result = strategy.eval();
 
     ASSERT_FLOAT_EQ(result.getFallChance(), 8.18);
     ASSERT_FLOAT_EQ(result.getRiseChance(), 91.82);
@@ -455,7 +455,7 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForStockHighMaintanceChance) {
     stock.addRecord(record4);
     stock.addRecord(record5);
     FirstStrategy strategy(&stock);
-    Evaluation result = strategy.eval();
+    Forecast result = strategy.eval();
 
     ASSERT_FLOAT_EQ(result.getFallChance(), 0);
     ASSERT_FLOAT_EQ(result.getRiseChance(), 7.69);
@@ -496,7 +496,7 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForStockHighFallChance) {
     stock.addRecord(record4);
     stock.addRecord(record5);
     FirstStrategy strategy(&stock);
-    Evaluation result = strategy.eval();
+    Forecast result = strategy.eval();
 
     ASSERT_FLOAT_EQ(result.getFallChance(), 93.5);
     ASSERT_FLOAT_EQ(result.getRiseChance(), 6.5);
@@ -515,7 +515,7 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForCryptoHighFallChance) {
     crypto.addRecord(record4);
     crypto.addRecord(record5);
     FirstStrategy strategy(&crypto);
-    Evaluation result = strategy.eval();
+    Forecast result = strategy.eval();
 
     ASSERT_FLOAT_EQ(result.getFallChance(), 93.75);
     ASSERT_FLOAT_EQ(result.getRiseChance(), 6.25);
@@ -534,7 +534,7 @@ TEST(FirstStrategyTest, FirstStrategyEvalResultForCryptoHighMaintanceChance) {
     crypto.addRecord(record4);
     crypto.addRecord(record5);
     FirstStrategy strategy(&crypto);
-    Evaluation result = strategy.eval();
+    Forecast result = strategy.eval();
 
     ASSERT_FLOAT_EQ(result.getFallChance(), 0.0);
     ASSERT_FLOAT_EQ(result.getRiseChance(), 0.0);

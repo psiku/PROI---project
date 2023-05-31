@@ -26,7 +26,7 @@ enum Price {
 class FirstStrategy: public Strategy {
 public:
     explicit FirstStrategy(Instrument* instrument);
-    Evaluation eval() override;                         // returns % of rise, fall or maintance in price of instrument
+    Forecast eval() override;                         // returns % of rise, fall or maintance in price of instrument
     std::vector<double> listOfTangens();                   //  calculates the tangents between consecutive records in an instrument's data, and returns vector with these values
     double calculateTangens(const Record& record1, const Record& record2); // calculate the tangens between next two records and returns it
     int lookForChange(std::vector<double> values, int index);     // returns the position in the vector where a change in state has occurred.

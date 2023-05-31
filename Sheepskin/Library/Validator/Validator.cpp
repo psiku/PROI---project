@@ -4,6 +4,18 @@
 
 #include "Validator.h"
 
+bool Validator::checkBorderPrices(const Instrument &instrument) {
+    return false;
+}
+
+bool Validator::checkPrice(const Instrument &instrument) {
+    return false;
+}
+
+bool Validator::checkDateRepetition(const Instrument &instrument) {
+    return false;
+}
+
 bool Validator::validate(const Instrument& instrument) {
     return false;
 }

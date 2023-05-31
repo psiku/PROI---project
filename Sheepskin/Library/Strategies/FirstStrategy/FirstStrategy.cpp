@@ -14,9 +14,7 @@ Forecast FirstStrategy::eval() {
     double fallChance = setPrecision(std::get<1>(chances), 2);
     double maintenanceChance = setPrecision(std::get<2>(chances), 2);
 
-    Forecast result(riseChance, fallChance, maintenanceChance);
-
-    return result;
+    return { riseChance, fallChance, maintenanceChance };
 }
 
 double FirstStrategy::calculateTangens(const Record& record1, const Record& record2) {

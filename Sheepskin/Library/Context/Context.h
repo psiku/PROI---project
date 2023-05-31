@@ -4,9 +4,15 @@
 
 #ifndef SHEEPSKIN_CONTEXT_H
 #define SHEEPSKIN_CONTEXT_H
-
+#include "../Strategies/Strategy/Strategy.h"
 
 class Context {
+private:
+    std::unique_ptr<Strategy> current;
+
+public:
+    Forecast run();
+    void set(std::unique_ptr<Strategy> strategy);
 };
 
 

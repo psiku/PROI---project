@@ -3,3 +3,11 @@
 //
 
 #include "Context.h"
+
+Forecast Context::run() {
+    return current->eval();
+}
+
+void Context::set(std::unique_ptr<Strategy> strategy) {
+    current = std::move(strategy);
+}

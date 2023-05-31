@@ -25,7 +25,6 @@ public:
     std::vector<Record> getRecords() const;
     virtual double getPrice(const Record& record);
 
-// Iterator -> możliwe że do przeniesienia jako osobna klasa
     struct Iterator {
     public:
         using iterator_category = std::forward_iterator_tag;

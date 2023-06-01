@@ -6,19 +6,21 @@
 #include <stdexcept>
 #include "ExceptionHandler/ExceptionHandler.h"
 
+
+
 TEST(ExceptionHandlerTest, InvalidFormatExceptionTest) {
     ExceptionHandler handler;
     InvalidFormatException ex;
 
     try {
-    throw ex;
+        throw ex;
     } catch (const std::exception& e) {
-    std::stringstream ss;
-    ss << "Handling Exception: " << ex.what() << std::endl;
-    testing::internal::CaptureStdout();
-    handler.handle(e);
-    std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, ss.str());
+        std::stringstream ss;
+        ss << "Handling Exception: " << ex.what() << std::endl;
+        testing::internal::CaptureStderr();  // Capture output from std::cerr
+        handler.handle(e);
+        std::string output = testing::internal::GetCapturedStderr();
+        EXPECT_EQ(output, ss.str());
     }
 }
 
@@ -27,16 +29,17 @@ TEST(ExceptionHandlerTest, NotEnoughDataExceptionTest) {
     NotEnoughDataException ex;
 
     try {
-    throw ex;
+        throw ex;
     } catch (const std::exception& e) {
-    std::stringstream ss;
-    ss << "Handling Exception: " << ex.what() << std::endl;
-    testing::internal::CaptureStdout();
-    handler.handle(e);
-    std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, ss.str());
+        std::stringstream ss;
+        ss << "Handling Exception: " << ex.what() << std::endl;
+        testing::internal::CaptureStderr();  // Capture output from std::cerr
+        handler.handle(e);
+        std::string output = testing::internal::GetCapturedStderr();
+        EXPECT_EQ(output, ss.str());
     }
 }
+
 TEST(ExceptionHandlerTest, InvalidDataExceptionTest) {
     ExceptionHandler handler;
     InvalidDataException ex;
@@ -46,12 +49,13 @@ TEST(ExceptionHandlerTest, InvalidDataExceptionTest) {
     } catch (const std::exception& e) {
         std::stringstream ss;
         ss << "Handling Exception: " << ex.what() << std::endl;
-        testing::internal::CaptureStdout();
+        testing::internal::CaptureStderr();  // Capture output from std::cerr
         handler.handle(e);
-        std::string output = testing::internal::GetCapturedStdout();
+        std::string output = testing::internal::GetCapturedStderr();
         EXPECT_EQ(output, ss.str());
     }
 }
+
 TEST(ExceptionHandlerTest, InvalidInstrumentNameExceptionTest) {
     ExceptionHandler handler;
     InvalidInstrumentNameException ex;
@@ -61,9 +65,9 @@ TEST(ExceptionHandlerTest, InvalidInstrumentNameExceptionTest) {
     } catch (const std::exception& e) {
         std::stringstream ss;
         ss << "Handling Exception: " << ex.what() << std::endl;
-        testing::internal::CaptureStdout();
+        testing::internal::CaptureStderr();  // Capture output from std::cerr
         handler.handle(e);
-        std::string output = testing::internal::GetCapturedStdout();
+        std::string output = testing::internal::GetCapturedStderr();
         EXPECT_EQ(output, ss.str());
     }
 }
@@ -73,13 +77,13 @@ TEST(ExceptionHandlerTest, UnknownExceptionTest) {
     std::runtime_error ex("Runtime error");
 
     try {
-    throw ex;
+        throw ex;
     } catch (const std::exception& e) {
-    std::stringstream ss;
-    ss << "Handling unknown exception: " << ex.what() << std::endl;
-    testing::internal::CaptureStdout();
-    handler.handle(e);
-    std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, ss.str());
+        std::stringstream ss;
+        ss << "Handling unknown exception: " << ex.what() << std::endl;
+        testing::internal::CaptureStderr();  // Capture output from std::cerr
+        handler.handle(e);
+        std::string output = testing::internal::GetCapturedStderr();
+        EXPECT_EQ(output, ss.str());
     }
 }

@@ -13,7 +13,7 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(Tests ExampleTests.cpp StrategyTests.cpp CSVTests.cpp FirstStrategyTest.cpp StockTest.cpp CryptoCurrencyTest.cpp ETFTest.cpp InstrumentTests.cpp ForecastTests.cpp ContextTests.cpp OrchestratorTests.cpp ValidatorTests.cpp EvaluatorTests.cpp)
+add_executable(Tests ExampleTests.cpp StrategyTests.cpp CSVTests.cpp FirstStrategyTest.cpp StockTest.cpp CryptoCurrencyTest.cpp ETFTest.cpp InstrumentTests.cpp ForecastTests.cpp ContextTests.cpp OrchestratorTests.cpp ValidatorTests.cpp EvaluatorTests.cpp ExceptionHandlerTest.cpp)
 
 include_directories(../Library)
 target_link_libraries(Tests Library)

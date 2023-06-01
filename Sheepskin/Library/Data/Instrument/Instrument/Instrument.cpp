@@ -12,8 +12,15 @@ void Instrument::addRecord(const Record &record) {
     records.push_back(record);
 }
 
+double Instrument::getVolatility(const Record &record) {
+    return 0.0;
+}
+
 std::vector<Record> Instrument::getRecords() const {
     return records;
+}
+std::string Instrument::getId() const {
+    return id;
 }
 
 double Instrument::getPrice(const Record &record) {
@@ -23,4 +30,8 @@ double Instrument::getPrice(const Record &record) {
 Instrument Instrument::operator>>(const Record &record) {
         addRecord(record);
         return *this;
+}
+
+std::string Instrument::getType() const {
+    return "instrument";
 }

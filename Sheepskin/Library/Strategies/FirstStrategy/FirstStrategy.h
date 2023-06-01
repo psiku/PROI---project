@@ -76,7 +76,7 @@ public:
     //@param value - value to be checked
     //@return Price enum with status of instrument
     Price status(double value);
-
+    std::tuple<double, double, double> calculateChances();   // calculates the percentage based on the number of changes, the sumOfDifference, the current trend, and the moving average.
     // Calculates the last status of instrument, based on the value of tangent
     Price lastStatus();
 

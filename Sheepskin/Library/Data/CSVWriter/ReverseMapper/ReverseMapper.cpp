@@ -3,3 +3,11 @@
 //
 
 #include "ReverseMapper.h"
+#include "../../../Estimation/Estimation.h"
+#include <string>
+#include <vector>
+
+template <>
+std::string ReverseMapper::translate(double val) {
+
+}

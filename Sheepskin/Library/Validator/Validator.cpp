@@ -50,4 +50,15 @@ bool Validator::validate(Instrument& instrument) {
         && checkDateRepetition(instrument);
 }
 
+bool Validator::checkRecordAmount(Instrument &instrument) {
+    int amount = 0;
+    for(auto record: instrument){
+        amount += 1;
+    }
+    if(amount >=2){
+        return true;
+    }
+    return false;
+}
+
 

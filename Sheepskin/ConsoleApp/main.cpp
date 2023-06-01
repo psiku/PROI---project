@@ -3,10 +3,11 @@
 #include "Strategies/FirstStrategy/FirstStrategy.h"
 #include "Orchestrator/Orchestrator.h"
 #include "ExceptionHandler/ExceptionHandler.h"
+#include "Exceptions/InvalidArgumentsException.h"
 
 int main(int argc, char* argv[]) {
     try {
-        if(argc < 3) throw std::exception();
+        if(argc < 3) throw InvalidArgumentsException();
 
         Orchestrator orchestrator;
         orchestrator.setup(argv[1]);

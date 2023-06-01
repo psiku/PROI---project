@@ -1,19 +1,17 @@
 //
 // Created by barte on 11.05.2023.
 //
-
-#include <string>
-#include <iostream>
 #include <fstream>
-
+#include <string>
+#include <vector>
+#include "../CSVResult/CSVResult.h"
 #include "CSVReader.h"
-#include "../Mapper/Mapper.h"
 
-//template <class ...Types>
-//CSVReader<Types...>::CSVReader(std::string filename): filename(filename) {};
 
-template <class ...Types>
-CSVResult CSVReader<Types...>::read(std::string filepath) {
+
+CSVReader::CSVReader() {}
+
+CSVResult CSVReader::read(std::string filepath) {
     std::ifstream file;
     file.open(filepath);
 
@@ -28,11 +26,9 @@ CSVResult CSVReader<Types...>::read(std::string filepath) {
         }
     }
     return CSVResult(columns);
-//    return result;
 }
 
-template <class ...Types>
-std::vector<std::string> CSVReader<Types...>::split(std::string line) {
+std::vector<std::string> CSVReader::split(std::string line) {
     std::vector <std::string> ans;
 
     std::string curr_val;
@@ -49,15 +45,3 @@ std::vector<std::string> CSVReader<Types...>::split(std::string line) {
     return ans;
 }
 
-//template <class ...Types>
-//CSVResult<Types...> CSVReader<Types...>::getMapped() {
-////    return CSVResult<Types...>();
-//    using CSVRow = std::tuple<Types...>;
-//    std::vector<CSVRow> vals;
-//    for(auto row:values) {
-//        Mapper mapper(row);
-//        (mapper.translate<Types>(), ...);
-//        //vals.emplace_back(r);
-//    }
-//    //return CSVResult(vals);
-//}

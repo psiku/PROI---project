@@ -3,22 +3,12 @@
 //
 
 #include "CSVResult.h"
-#include "../Mapper/Mapper.h"
-//#include "Data/Record/Record.h"
 
 #include <utility>
-#include <sstream>
 #include <iomanip>
 
-//template <class ...Types>
-//CSVResult<Types...>::CSVResult(std::vector<std::tuple<Types...>> data): data(data) {};
+CSVResult::CSVResult(std::vector<std::vector<std::string>> data): data(std::move(data)) {};
 
-//template <class ...Types>
-//std::tuple<Types...> CSVResult<Types...>::readline() {
-////    if(index != data.size())
-//        return data[index++];
-//
-//}
 
 std::vector<std::string> CSVResult::getRow() {
     std::vector<std::string> row;

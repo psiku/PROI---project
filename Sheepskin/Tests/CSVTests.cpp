@@ -13,15 +13,16 @@ TEST(CSVTests, MapperStringTest) {
     vec.emplace_back("2");
     vec.emplace_back("3");
     std::vector<int> expected_ans = {1,2,3};
-
+//
     Mapper mapper;
     for(int i = 0 ; i < vec.size() ; i++) {
         ASSERT_EQ(expected_ans[i], mapper.translate<int>(vec[i]));
     }
 }
 TEST(CSVTests, CSVReaderTest) {
-    CSVReader<int, double, std::string> reader;
-    reader.read("./test.csv");
+    CSVReader reader;
+//    reader.read(file);
+    CSVReader::read("./test.csv");
 //    reader.read();
 //    /*CSVResult<int, double, std::string> res = */reader.getMapped();
 }

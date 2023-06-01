@@ -7,7 +7,6 @@
 
 #include <utility>
 #include <vector>
-#include <unordered_map>
 #include <string>
 
 class CSVResult {
@@ -17,10 +16,8 @@ private:
 public:
     bool end();
     std::vector<std::string> getRow();
-    CSVResult() = default;
-    explicit CSVResult(std::vector<std::vector<std::string>> data): data(std::move(data)) {};
+    explicit CSVResult(std::vector<std::vector<std::string>> data);
 };
 
-#include "CSVResult.cpp"
 
 #endif //SHEEPSKIN_CSVRESULT_H

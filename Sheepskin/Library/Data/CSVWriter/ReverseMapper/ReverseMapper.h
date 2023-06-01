@@ -11,7 +11,8 @@
 class ReverseMapper {
 public:
     ReverseMapper() = default;
-    std::vector<std::string> mapToRow(Estimation);
+    std::string mapEstimationToRow(Estimation est);
+    std::string join(std::vector<std::string> words, std::string sep);
     template <class T>
     std::string translate(T val);
 };

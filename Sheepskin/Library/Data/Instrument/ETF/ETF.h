@@ -14,7 +14,6 @@
 class ETF: public Instrument {
 public:
     explicit ETF(std::string id);
-    double getVolatility(const Record &record) override;
     //getPrice method returns price of the ETF, based on the record average price
     //@param record - record which will be used to calculate price
     //@return price of the ETF

@@ -24,8 +24,6 @@ public:
     //@param record - record which will be added to the vector<Records> in Instrument
     void addRecord(const Record& record);
 
-    virtual  double getVolatility(const Record& record);
-
     //getRecords method returns vector of Records
     std::vector<Record> getRecords() const;
 

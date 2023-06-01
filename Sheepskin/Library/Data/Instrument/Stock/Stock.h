@@ -13,7 +13,6 @@
 class Stock: public Instrument {
 public:
         explicit Stock(std::string id);
-        double getVolatility(const Record &record) override;
 
         //getPrice method returns price of the Stock, based on the record mean price
         //@param record - record which will be used to calculate price

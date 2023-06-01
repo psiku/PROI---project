@@ -15,3 +15,8 @@ TEST(ETFTest, getPriceTest) {
 
     ASSERT_FLOAT_EQ(result, 37987.5);
 }
+TEST(ETFTest, getType) {
+    ETF etf("id");
+
+    ASSERT_EQ(etf.getType(), "etf");
+}

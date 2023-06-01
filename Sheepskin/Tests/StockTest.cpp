@@ -24,3 +24,8 @@ TEST(StockTest, getMean) {
 
     ASSERT_FLOAT_EQ(result, 38025.0);
 }
+TEST(StockTest, getType) {
+    Stock stock("id");
+
+    ASSERT_EQ(stock.getType(), "stock");
+}

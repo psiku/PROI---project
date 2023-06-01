@@ -137,3 +137,23 @@ TEST(ValidatorTests, InvalidDateOrderTest) {
     bool result = Validator::checkDateOrder(crypto);
     ASSERT_FALSE(result);
 }
+TEST(ValidatorTests, ValidAmountOfRecordsTest) {
+    CryptoCurrency crypto("id");
+    Record record1(1647580890, 135.45, 200, 100, 175.25, 1000);
+    Record record2(1647580880, 130.45, 200, 100, 175.25, 500);
+    Record record3(1647580970, 125.45, 200, 100, 175.25, 750);
+    crypto.addRecord(record1);
+    crypto.addRecord(record2);
+    crypto.addRecord(record3);
+
+    bool result = Validator::checkRecordAmount(crypto);
+    ASSERT_TRUE(result);
+}
+TEST(ValidatorTests, InvalidAmountOfRecordsTest) {
+    CryptoCurrency crypto("id");
+    Record record1(1647580890, 135.45, 200, 100, 175.25, 1000);
+    crypto.addRecord(record1);
+
+    bool result = Validator::checkRecordAmount(crypto);
+    ASSERT_FALSE(result);
+}

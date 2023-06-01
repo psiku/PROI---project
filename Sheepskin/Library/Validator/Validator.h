@@ -10,6 +10,7 @@
 class Validator {
 public:
     static bool checkBorderPrices(Instrument& instrument);
+    static bool checkRecordAmount(Instrument& instrument);
     static bool checkPrice(Instrument& instrument);
     static bool checkDateRepetition(Instrument& instrument);
     static bool checkDateOrder(Instrument& instrument);

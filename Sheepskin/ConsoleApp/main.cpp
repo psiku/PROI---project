@@ -10,9 +10,11 @@
 
 int main() {
     Orchestrator orchestrator;
-    orchestrator.setup("./Data/example.csv");
+    //orchestrator.setup("Data/example.csv");
+    orchestrator.setup("../../Data/example.csv");
     orchestrator.run();
-    orchestrator.save("./Results/example.csv");
+    //orchestrator.save("Results/example.csv");
+    orchestrator.save("../../Results/example.csv");
 
     return 0;
 }

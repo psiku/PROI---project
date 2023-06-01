@@ -7,6 +7,8 @@
 
 #include <exception>
 
+// Class InvalidInstrumentNameException is an exception which is thrown when invalid instrument name is provided
+// it is derived from std::exception
 class InvalidInstrumentNameException: public std::exception {
 public:
     const char* what() const throw() {

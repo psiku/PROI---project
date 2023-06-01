@@ -15,7 +15,7 @@ class Mapper {
 public:
 //    Mapper();
     Mapper() = default;
-    std::vector<Instrument*> mapToInstruments(CSVResult);
+    std::vector<Instrument*> mapToInstruments(CSVResult result);
     template <class T>
     T translate(std::string val);
 };

@@ -11,33 +11,74 @@
 #include <iomanip>
 #include <sstream>
 
-//defines an enumeration called "Price" with three possible states: INCREASE, STILL, and DECREASE.
-//The enumeration is used to represent the price movement or change.
-//INCREASE indicates a price increase.
-//STILL indicates no change in price.
-//DECREASE indicates a price decrease.
+// Enum for status of instrument
+// INCREASE - price is increasing
+// STILL - price is still
+// DECREASE - price is decreasing
 enum Price {
     INCREASE,
     STILL,
     DECREASE
 };
 
-
+// FirstStrategy class is responsible for calculating the forecast for instrument
 class FirstStrategy: public Strategy {
 public:
     explicit FirstStrategy(Instrument* instrument);
-    Forecast eval() override;                         // returns % of rise, fall or maintance in price of instrument
-    std::vector<double> listOfTangens();                   //  calculates the tangents between consecutive records in an instrument's data, and returns vector with these values
-    double calculateTangens(const Record& record1, const Record& record2); // calculate the tangens between next two records and returns it
-    int lookForChange(std::vector<double> values, int index);     // returns the position in the vector where a change in state has occurred.
-    double calculateDifference(int down, int up);                // returns the difference in prices between the last two state changes.
-    double sumOfDifference(std::vector<double> tangens);        // returns the sum of all changes in states
-    double setPrecision(double value, int precison);           // set precision to precision-th place after the decimal
-    double calculateMovingAverage();                          // calculate weighted moving average for Instrument
-    std::tuple<int, int, int>getNumberOfStatus(std::vector<double> tangens);   // returns a tuple with information about how many times the price has increased, decreased, and the total number of comparisons
+    // Calculates the forecast for instrument
+    //@return Forecast object with calculated forecast
+    Forecast eval() override;
+
+    // Calculates list of tangents between consecutive records in an instrument's data, and returns vector with these values
+    //@return vector with tangents
+    std::vector<double> listOfTangens();
+
+    // Calculates Tangens between two records
+    //@param record1 - first record
+    //@param record2 - second record
+    //@return (double)Tangens between two records
+    double calculateTangens(const Record& record1, const Record& record2);
+
+    // Looks for change in vector of tangents
+    //@param values - vector of tangents
+    //@param index - index of tangent to be checked
+    //@return index of change in state vector of tangents
+    int lookForChange(std::vector<double> values, int index);
+
+    // Calculates the difference in price between two values
+    //@param down - first price
+    //@param up - second price
+    //@return (double) difference between two prices
+    double calculateDifference(int down, int up);
+
+    // Calculates the sum of differences between consecutive tangents
+    //@param tangens - vector of tangents
+    //@return (double) sum of differences between consecutive tangents
+    double sumOfDifference(std::vector<double> tangens);
+
+    // sets precision of double value
+    //@param value - value to be set
+    //@param precision - precision to be set
+    //@return (double) value with set precision
+    double setPrecision(double value, int precison);
+
+    // Calculates weighted moving average for instrument
+    //@return (double) moving average
+    double calculateMovingAverage();
+
+    // Calculates the number of status in instrument
+    //Check how many times the status has changed
+    //@param tangens - vector of tangents
+    //@return tuple with number of each status
+    std::tuple<int, int, int>getNumberOfStatus(std::vector<double> tangens);
+
+    // Calculates the status of instrument, based on the value of tangent
+    //@param value - value to be checked
+    //@return Price enum with status of instrument
+    Price status(double value);
     std::tuple<double, double, double> calculateChances();   // calculates the percentage based on the number of changes, the sumOfDifference, the current trend, and the moving average.
-    Price status(double value);                              // returns current status based on tangent value
-    Price lastStatus();                                      // returns last state of an Instrument
+    // Calculates the last status of instrument, based on the value of tangent
+    Price lastStatus();
 };
 
 

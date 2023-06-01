@@ -25,4 +25,6 @@ double ETF::getPrice(const Record &record) {
     return record.getAverage();
 }
 
-
+std::string ETF::getType() const {
+    return "etf";
+}

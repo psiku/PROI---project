@@ -8,6 +8,8 @@
 
 #include <exception>
 
+// Class NotEnoughDataException is an exception which is thrown when not enough data is provided to calculate strategy result
+// it is derived from std::exception
 class NotEnoughDataException: public std::exception {
 public:
     const char* what() const throw() {

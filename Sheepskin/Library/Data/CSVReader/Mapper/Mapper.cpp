@@ -77,7 +77,7 @@ std::vector<Instrument*> Mapper::mapToInstruments(CSVResult result) {
                 instruments[name] = crypto;
             }
         }
-        instruments[name]->addRecord(record);
+        (*instruments[name]) >> record;
     }
     std::vector<Instrument*> res;
     for(auto const& key: instruments) {

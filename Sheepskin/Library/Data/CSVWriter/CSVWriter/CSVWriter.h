@@ -37,6 +37,10 @@ void CSVWriter<Estimation>::write() {
     ReverseMapper mapper;
     std::ofstream file;
     file.open(filename);
+
+    std::vector<std::string> header = {"id", "type", "fall", "rise", "maint"};
+    file << mapper.join(header, ",") << "\n";
+    std::cout << mapper.join(header, ",") << "\n";
     for(Estimation decision:decisions) {
         file << mapper.mapEstimationToRow(decision) << "\n";
         std::cout << mapper.mapEstimationToRow(decision) << "\n";

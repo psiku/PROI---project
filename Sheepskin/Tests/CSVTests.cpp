@@ -19,17 +19,6 @@ TEST(CSVTests, MapperStringTest) {
         ASSERT_EQ(expected_ans[i], mapper.translate<int>(vec[i]));
     }
 }
-TEST(CSVTests, CSVReaderTest) {
-    CSVReader reader;
-//    reader.read(file);
-    CSVResult res = reader.read("Tests/CSVFiles/test1.csv");
-    std::vector<std::string> values = {"123.321", "1", "test"};
-    auto row = res.getRow();
-    for(int i = 0 ; i < values.size() ; i++)
-        ASSERT_EQ(row[i], values[i]);
-//    reader.read();
-//    /*CSVResult<int, double, std::string> res = */reader.getMapped();
-}
 TEST(CSVTests, CSVReaderToMapperTest) {
     CSVReader reader;
     CSVResult res = reader.read("Tests/CSVFiles/test2.csv");

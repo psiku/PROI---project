@@ -4,9 +4,14 @@
 
 #include "Orchestrator.h"
 #include "../Evaluator/Evaluator.h"
+#include "../../ConsoleApp/Data/CSVReader/CSVReader/CSVReader.h"
 
 void Orchestrator::setup(std::string filename) {
     // TODO
+    CSVReader reader;
+    CSVResult result = reader.read(filename);
+    Mapper mapper;
+    std::vector<Instrument*> instruments = mapper.mapToInstruments(result);
 }
 
 void Orchestrator::run() {

@@ -13,9 +13,9 @@
 //CSVReader<Types...>::CSVReader(std::string filename): filename(filename) {};
 
 template <class ...Types>
-CSVResult CSVReader<Types...>::read(std::ifstream &file) {
-//    std::ifstream file;
-//    file.open(filename);
+CSVResult CSVReader<Types...>::read(std::string filepath) {
+    std::ifstream file;
+    file.open(filepath);
 
     std::string line;
     std::string header = line;

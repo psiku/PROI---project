@@ -27,8 +27,9 @@ public:
 #include <utility>
 #include <string>
 #include <vector>
-#include "Data/Instrument/ETF/ETF.h"
-#include "Data/Instrument/CryptoCurrency/CryptoCurrency.h"
+#include "../../../../Library/Data/Instrument/ETF/ETF.h"
+#include "../../../../Library/Data/Instrument/CryptoCurrency/CryptoCurrency.h"
+#include "../../../../Library/Data/Instrument/Stock/Stock.h"
 //#include "Mapper.h"
 
 template <>

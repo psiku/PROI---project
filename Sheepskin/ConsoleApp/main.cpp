@@ -6,6 +6,7 @@
 #include "Data/CSVReader/CSVReader/CSVReader.h"
 #include "Strategies/Strategy/Strategy.h"
 #include "Data/CSVReader/Mapper/Mapper.h"
+#include "Orchestrator/Orchestrator.h"
 
 int main() {
     Orchestrator orchestrator;

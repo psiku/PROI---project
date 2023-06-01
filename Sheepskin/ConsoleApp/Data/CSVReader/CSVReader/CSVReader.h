@@ -7,7 +7,7 @@
 
 #include <string>
 #include <fstream>
-#include "Data/Instrument/Instrument/Instrument.h"
+#include "../../../../Library/Data/Instrument/Instrument/Instrument.h"
 #include "../CSVResult/CSVResult.h"
 
 template <class ...Types>
@@ -18,7 +18,7 @@ private:
     std::vector<std::string> split(std::string line);
 public:
     CSVReader() = default;
-    CSVResult read(std::ifstream &file);
+    CSVResult read(std::string filepath);
 //    CSVResult<Types...> getMapped() {
 //        using CSVRow = std::tuple<Types...>;
 //        std::vector<CSVRow> vals(values[0].size());

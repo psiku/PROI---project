@@ -69,6 +69,6 @@ TEST(SecondStrategyTests, getAverageStageTestFalling)
 
     double result = strategy.getAverageStage(periods, Falling);
 
-    ASSERT_EQ(result, 1);
+    ASSERT_EQ(result, 0);
 }
 

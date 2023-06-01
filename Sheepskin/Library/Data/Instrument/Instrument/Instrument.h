@@ -24,6 +24,7 @@ public:
     virtual  double getVolatility(const Record& record);// virtual function which calculates Volatility in price, different for Stock, ETF, Cryptocurrency
     std::string getId() const;
     std::vector<Record> getRecords() const;                 // method which return vector<Records> of Instrument
+    virtual std::string getType() const;
     virtual double getPrice(const Record& record);          // virtual function which calculate price of record, different for Stock, ETF, Cryptocurrency
 
     // Insturment's own iterator implementation

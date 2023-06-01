@@ -27,3 +27,6 @@ double Instrument::getPrice(const Record &record) {
     return 0;
 }
 
+std::string Instrument::getType() const {
+    return "instrument";
+}

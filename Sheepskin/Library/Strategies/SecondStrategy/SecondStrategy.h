@@ -9,6 +9,7 @@
 #include "../Strategy/Strategy.h"
 #include "Stage.h"
 #include "Period.h"
+#include <cmath>
 
 class SecondStrategy: public Strategy  {
 public:
@@ -17,9 +18,9 @@ public:
 
     double getAverageTimestamp();
     std::vector<Period> splitByFibonacci();
-    double getPeriodAveragePriceChange(std::vector<Period> periods);
+    double getPeriodAveragePriceChange(Period periods);
     Stage calculatePeriodStage(Period period);
-    double getAverageStage(std::vector<Stage> stages);
+    double getAverageStage(std::vector<Period> periods, Stage stage);
 };
 
 

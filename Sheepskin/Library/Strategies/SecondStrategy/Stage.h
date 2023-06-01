@@ -6,9 +6,9 @@
 #define SHEEPSKIN_STAGE_H
 
 enum Stage {
-    Falling,
-    Maintaining,
-    Rising
+    Falling = 0,
+    Maintaining = 1,
+    Rising = 2
 };
 
 #endif //SHEEPSKIN_STAGE_H

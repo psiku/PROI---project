@@ -14,6 +14,8 @@ private:
     std::vector<Record> records;
 
 public:
+    Period(std::vector<Record> records) : records(records) {}
+
     time_t to() const {
         return std::max_element(records.begin(), records.end(), [&](const Record& a, const Record& b){ return a.date < b.date; })->date;
     }

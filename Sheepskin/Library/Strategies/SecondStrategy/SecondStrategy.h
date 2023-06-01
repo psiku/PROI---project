@@ -15,7 +15,8 @@ public:
     explicit SecondStrategy(Instrument* instrument);
     Forecast eval() override;
 
-    std::vector<Period> splitByFibonacci(Instrument* instrument);
+    double getAverageTimestamp();
+    std::vector<Period> splitByFibonacci();
     double getPeriodAveragePriceChange(std::vector<Period> periods);
     Stage calculatePeriodStage(Period period);
     double getAverageStage(std::vector<Stage> stages);

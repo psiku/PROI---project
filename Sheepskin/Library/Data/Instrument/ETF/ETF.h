@@ -13,6 +13,7 @@ public:
     explicit ETF(std::string id);
     double getVolatility(const Record &record) override;    //
     double getPrice(const Record &record) override;         // returns average value of 4 prices (high, low, close, open)
+    std::string getType() const override;
 };
 
 

@@ -14,6 +14,7 @@ public:
         explicit Stock(std::string id);
         double getVolatility(const Record &record) override;
         double getPrice(const Record &record) override;     // returns calculateMean()
+        std::string getType() const override;
         double calculateMean(const Record &record);         // return mean value of 4 prices (high, low, close, open)
 };
 

@@ -30,3 +30,7 @@ double Stock::calculateMean(const Record &record) {
 
     return (values.at(1) + values.at(2)) / 2;
 };
+
+std::string Stock::getType() const {
+    return "stock";
+}

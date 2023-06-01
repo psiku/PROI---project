@@ -74,6 +74,10 @@ public:
 
     //@return Iterator to the last Record
     Iterator end() { return Iterator(&records[records.size()]); }
+
+    //operator>> adds record to the vector of Records
+    //@param record - record which will be added to the vector of Records
+    Instrument operator>>(const Record& record);
 };
 
 

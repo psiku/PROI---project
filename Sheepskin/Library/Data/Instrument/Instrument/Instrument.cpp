@@ -20,3 +20,7 @@ double Instrument::getPrice(const Record &record) {
     return 0;
 }
 
+Instrument Instrument::operator>>(const Record &record) {
+        addRecord(record);
+        return *this;
+}

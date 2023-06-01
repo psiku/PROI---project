@@ -71,3 +71,14 @@ TEST(InstrumentIteratorTests, compareIterators) {
     ASSERT_FALSE(it1 == it2);
     ASSERT_NE(it1, it2);
 }
+TEST(InstrumentTests, addRecordwithOperator) {
+    Instrument instrument("id");
+    Record record(1647580800,38000.00,38200.00,37700.00,38050.00,1);
+
+    instrument>> record;
+    instrument>> record;
+    instrument>> record;
+    double result = instrument.getRecords().size();
+
+    ASSERT_EQ(result, 3);
+}

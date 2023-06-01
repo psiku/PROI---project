@@ -79,6 +79,10 @@ public:
 
     // Calculates the last status of instrument, based on the value of tangent
     Price lastStatus();
+
+    // Calculates the chances of each status
+    //@return tuple with chances of each status
+    std::tuple<double, double, double> calculateChances();
 };
 
 

@@ -19,3 +19,6 @@ double CryptoCurrency::getPrice(const Record &record) {
     return record.close;
 }
 
+std::string CryptoCurrency::getType() const {
+    return "crypto";
+}

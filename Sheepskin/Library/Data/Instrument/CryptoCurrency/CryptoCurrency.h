@@ -13,6 +13,7 @@ public:
     explicit CryptoCurrency(std::string id);
     double getVolatility(const Record &record) override;
     double getPrice(const Record &record) override;     // returns close value of record
+    std::string getType() const override;
 };
 
 

@@ -38,7 +38,9 @@ TEST(CSVTests, CSVReaderToMapperTest) {
     auto* instruments = new std::vector<Instrument*>(mapper.mapToInstruments(res));
 
     ASSERT_EQ(instruments->size(), 4);
-//    (*instruments)[0]->getRecords();
+    for(auto instrument:*instruments) {
+        ASSERT_TRUE(instrument->getRecords().size() > 0);
+    }
 //    for(auto *instrument:instruments) {
 //        (instrument->getRecords());
 //    }

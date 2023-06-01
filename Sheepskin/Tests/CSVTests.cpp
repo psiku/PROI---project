@@ -12,16 +12,16 @@ TEST(CSVTests, MapperStringTest) {
     vec.emplace_back("1");
     vec.emplace_back("2");
     vec.emplace_back("3");
-    Mapper<int> mapper(vec);
-    std::vector<int> ans = mapper.translate();
-    ASSERT_TRUE(ans[0] == 1 && ans[1] == 2 && ans[2] == 3);
+    std::vector<int> expected_ans = {1,2,3};
+
+    Mapper mapper;
+    for(int i = 0 ; i < vec.size() ; i++) {
+        ASSERT_EQ(expected_ans[i], mapper.translate<int>(vec[i]));
+    }
 }
 TEST(CSVTests, CSVReaderTest) {
-    std::ifstream file;
-    file.open("/Users/chumchum/Studia/SEM2/PROI/Projekt/laboratoria-proi23l-projekt-zespolowy/Sheepskin/Tests/test.csv");
-
     CSVReader<int, double, std::string> reader;
-    reader.read(file);
+    reader.read("./test.csv");
 //    reader.read();
 //    /*CSVResult<int, double, std::string> res = */reader.getMapped();
 }

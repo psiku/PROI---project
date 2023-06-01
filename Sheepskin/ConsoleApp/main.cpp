@@ -13,7 +13,7 @@ int main() {
     try {
         Orchestrator orchestrator;
         //orchestrator.setup("Data/example.csv");
-        orchestrator.setup("../../Data/example.csv");
+        orchestrator.setup("../../Data/midterm.csv");
         orchestrator.run();
         //orchestrator.save("Results/example.csv");
         orchestrator.save("../../Results/example.csv");

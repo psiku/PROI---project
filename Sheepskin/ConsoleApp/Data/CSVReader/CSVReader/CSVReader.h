@@ -18,18 +18,21 @@ private:
     std::vector<std::string> split(std::string line);
 public:
     CSVReader() = default;
-    void read(std::ifstream &file);
-    CSVResult<Types...> getMapped() {
-        using CSVRow = std::tuple<Types...>;
-        std::vector<CSVRow> vals(values[0].size());
-        CSVResult res;
-        int row_iterator = 0;
-        ([&]{
-            std::vector<Types> translated = Mapper<Types>(values[row_iterator]).translate();
-            row_iterator++;
-        }(), ...);
-        return CSVResult(vals);
-    };
+    CSVResult read(std::ifstream &file);
+//    CSVResult<Types...> getMapped() {
+//        using CSVRow = std::tuple<Types...>;
+//        std::vector<CSVRow> vals(values[0].size());
+//        CSVResult<Types...> res;
+//        int column_iterator = 0;
+//        ([&]{
+//            std::vector<Types> translated = Mapper<Types>(values[column_iterator]).translate();
+//            for(Types u:translated)
+//                std::cout << u << " ";
+//            std::cout << '\n';
+//            column_iterator++;
+//        }(), ...);
+//        return CSVResult(vals);
+//    };
 };
 
 

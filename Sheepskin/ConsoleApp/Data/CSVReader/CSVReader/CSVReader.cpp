@@ -13,7 +13,7 @@
 //CSVReader<Types...>::CSVReader(std::string filename): filename(filename) {};
 
 template <class ...Types>
-void CSVReader<Types...>::read(std::ifstream &file) {
+CSVResult CSVReader<Types...>::read(std::ifstream &file) {
 //    std::ifstream file;
 //    file.open(filename);
 
@@ -21,14 +21,14 @@ void CSVReader<Types...>::read(std::ifstream &file) {
     std::string header = line;
     std::getline(file, header);
 
-    std::vector<std::vector<std::string>> rows(split(header).size());
+    std::vector<std::vector<std::string>> columns(split(header).size());
     while(std::getline(file, line)) {
         for(int i = 0 ; i < split(line).size(); i++) {
-              rows[i].emplace_back(split(line)[i]);
+              columns[i].emplace_back(split(line)[i]);
         }
     }
-
-    values = rows;
+    return CSVResult(columns);
+//    return result;
 }
 
 template <class ...Types>

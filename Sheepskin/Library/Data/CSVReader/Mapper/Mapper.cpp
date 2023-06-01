@@ -65,24 +65,24 @@ std::vector<Instrument*> Mapper::mapToInstruments(CSVResult result) {
             std::string type = translate<std::string>(row[1]);
 
             if(type == "etf") {
-                ETF etf(name);
-                instruments[name] = &etf;
+                auto etf = new ETF(name);
+                instruments[name] = etf;
             }
             else if(type == "stock") {
-                Stock stock(name);
-                instruments[name] = &stock;
+                auto stock = new Stock(name);
+                instruments[name] = stock;
             }
             else if(type == "crypto") {
-                CryptoCurrency crypto(name);
-                instruments[name] = &crypto;
+                auto crypto = new CryptoCurrency(name);
+                instruments[name] = crypto;
             }
         }
         instruments[name]->addRecord(record);
     }
     std::vector<Instrument*> res;
-    for(const auto& [key, value] : instruments) {
-        res.emplace_back(value);
+    for(auto const& key: instruments) {
+        res.emplace_back(key.second);
     }
-
+    std::cout << res[0]->getRecords().size() <<  " ";
     return res;
 }

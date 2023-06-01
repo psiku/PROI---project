@@ -3,10 +3,13 @@
 //
 
 #include "ExceptionHandler.h"
+#include "../Exceptions/InvalidArgumentsException.h"
 
 void ExceptionHandler::handle(const std::exception &exception) {
     try {
         throw; // Re-throw the exception to catch it with the derived types
+    } catch (const InvalidArgumentsException& e) {
+        std::cerr << "Handling Exception: " << e.what() << std::endl;
     } catch (const InvalidDataException& e) {
         std::cerr << "Handling Exception: " << e.what() << std::endl;
     } catch (const InvalidInstrumentNameException& e) {

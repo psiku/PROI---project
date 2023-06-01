@@ -12,9 +12,9 @@ Forecast SecondStrategy::eval() {
 }
 
 
-double SecondStrategy::getAverageTimestamp(Instrument *instrument) {
+double SecondStrategy::getAverageTimestamp() {
     std::vector<time_t> timestamps;
-    std::vector<Record> records = instrument->getRecords();
+    std::vector<Record> records = Strategy::getInstrument()->getRecords();
     for(int element = 1; element < records.size(); element ++) {
         timestamps.push_back(records[element].date - records[element - 1].date);
     }
@@ -23,9 +23,9 @@ double SecondStrategy::getAverageTimestamp(Instrument *instrument) {
     return (double)std::accumulate(timestamps.begin(), timestamps.end(), 0) / (double)count;
 }
 
-std::vector<Period> SecondStrategy::splitByFibonacci(Instrument *instrument) {
-    auto step = getAverageTimestamp(instrument);
-    std::vector<Record> records = instrument->getRecords();
+std::vector<Period> SecondStrategy::splitByFibonacci() {
+    auto step = getAverageTimestamp();
+    std::vector<Record> records = Strategy::getInstrument()->getRecords();
     std::vector<Period> periods;
 
     long first = 1, second = 1;

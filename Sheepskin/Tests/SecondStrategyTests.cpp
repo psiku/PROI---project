@@ -20,9 +20,9 @@ TEST(SecondStrategyTests, SplitByFibonacciTest)
     instrument.addRecord({9, 0, 0, 0, 0, 0});
 
 
-    SecondStrategy strategy(nullptr);
+    SecondStrategy strategy(&instrument);
 
-    auto result = strategy.splitByFibonacci(&instrument);
+    auto result = strategy.splitByFibonacci();
 
     ASSERT_EQ(result.size(), 4);
 

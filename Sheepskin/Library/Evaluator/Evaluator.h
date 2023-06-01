@@ -14,8 +14,8 @@ public:
     Evaluator() = default;
     void handle(Context *context, Instrument *instrument);
 
-    static std::vector<long> getTimestamps();
-    static long getTimestampMedian();
+    static std::vector<long> getTimestamps(Instrument *instrument);
+    static long getTimestampMedian(Instrument *instrument);
     static StrategyType chose(Instrument *instrument);
 };
 

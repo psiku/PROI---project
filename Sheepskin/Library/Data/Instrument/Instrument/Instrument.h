@@ -28,11 +28,19 @@ public:
     virtual double getPrice(const Record& record);          // virtual function which calculate price of record, different for Stock, ETF, Cryptocurrency
     // addRecord method add record to the vector<Records> in Instrument
     //@param record - record which will be added to the vector<Records> in Instrument
+    void addRecord(const Record& record);
+
+    virtual  double getVolatility(const Record& record);
+
     //getRecords method returns vector of Records
+    std::vector<Record> getRecords() const;
+
     //getPrice method returns price of the instrument
     //it is virtual method, because it is used in Instrument and in Stock, ETF, CryptoCurrency
     //@param record - record which will be used to calculate price
     //@return price of the instrument
+    virtual double getPrice(const Record& record);
+
     // Iterator class is used to iterate through the vector of Records
     struct Iterator {
     public:
@@ -74,6 +82,10 @@ public:
 
     //@return Iterator to the last Record
     Iterator end() { return Iterator(&records[records.size()]); }
+
+    //operator>> adds record to the vector of Records
+    //@param record - record which will be added to the vector of Records
+    Instrument operator>>(const Record& record);
 };
 
 

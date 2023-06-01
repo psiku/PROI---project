@@ -13,13 +13,11 @@
 class CryptoCurrency: public Instrument {
 public:
     explicit CryptoCurrency(std::string id);
-    double getVolatility(const Record &record) override;
-    double getPrice(const Record &record) override;     // returns close value of record
-    std::string getType() const override;
 
     //getPrice method returns price of the CryptoCurrency, based on the record closing price
     //@param record - record which will be used to calculate price
     //@return price of the CryptoCurrency
+    double getPrice(const Record &record) override;
 };
 
 

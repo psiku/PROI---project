@@ -20,12 +20,8 @@ private:
 
 public:
     explicit Instrument(std::string id);
-    void addRecord(const Record& record);                   // method which add record to the vector<Records> in Instrument
-    virtual  double getVolatility(const Record& record);// virtual function which calculates Volatility in price, different for Stock, ETF, Cryptocurrency
     std::string getId() const;
-    std::vector<Record> getRecords() const;                 // method which return vector<Records> of Instrument
     virtual std::string getType() const;
-    virtual double getPrice(const Record& record);          // virtual function which calculate price of record, different for Stock, ETF, Cryptocurrency
     // addRecord method add record to the vector<Records> in Instrument
     //@param record - record which will be added to the vector<Records> in Instrument
     void addRecord(const Record& record);

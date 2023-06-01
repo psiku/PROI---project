@@ -5,8 +5,24 @@
 #include <exception>
 #include <stdexcept>
 #include "ExceptionHandler/ExceptionHandler.h"
+#include "Exceptions/InvalidArgumentsException.h"
 
 
+TEST(ExceptionHandlerTest, InvalidArgumentsExceptionTest) {
+    ExceptionHandler handler;
+    InvalidArgumentsException ex;
+
+    try {
+        throw ex;
+    } catch (const std::exception& e) {
+        std::stringstream ss;
+        ss << "Handling Exception: " << ex.what() << std::endl;
+        testing::internal::CaptureStderr();  // Capture output from std::cerr
+        handler.handle(e);
+        std::string output = testing::internal::GetCapturedStderr();
+        EXPECT_EQ(output, ss.str());
+    }
+}
 
 TEST(ExceptionHandlerTest, InvalidFormatExceptionTest) {
     ExceptionHandler handler;

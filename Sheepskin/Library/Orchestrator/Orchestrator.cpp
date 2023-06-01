@@ -6,14 +6,16 @@
 #include "../Evaluator/Evaluator.h"
 #include "../Data/CSVReader/CSVReader/CSVReader.h"
 #include "../Data/CSVReader/Mapper/Mapper.h"
+#include "../Data/CSVWriter/CSVWriter/CSVWriter.h"
 
 void Orchestrator::setup(std::string filename) {
     // TODO
     CSVReader reader;
     CSVResult result = reader.read(filename);
     Mapper mapper;
-    std::vector<Instrument*> instruments = mapper.mapToInstruments(result);
-    this->instruments = instruments;
+    auto instruments = mapper.mapToInstruments(result);
+    Orchestrator::instruments = instruments;
+    std::cout << instruments.size();
 }
 
 void Orchestrator::run() {
@@ -33,6 +35,10 @@ std::vector<Estimation> Orchestrator::getEstimations() {
 
 void Orchestrator::save(std::string filename) {
     // TODO
+    CSVWriter<Estimation> writer(std::move(filename), getEstimations());
+    std::cout << "Am here";
+
+    writer.write();
 }
 
 

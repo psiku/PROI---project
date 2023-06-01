@@ -7,14 +7,19 @@
 #include "Strategies/Strategy/Strategy.h"
 #include "Data/CSVReader/Mapper/Mapper.h"
 #include "Orchestrator/Orchestrator.h"
+#include "ExceptionHandler/ExceptionHandler.h"
 
 int main() {
-    Orchestrator orchestrator;
-    //orchestrator.setup("Data/example.csv");
-    orchestrator.setup("../../Data/example.csv");
-    orchestrator.run();
-    //orchestrator.save("Results/example.csv");
-    orchestrator.save("../../Results/example.csv");
+    try {
+        Orchestrator orchestrator;
+        //orchestrator.setup("Data/example.csv");
+        orchestrator.setup("../../Data/example.csv");
+        orchestrator.run();
+        //orchestrator.save("Results/example.csv");
+        orchestrator.save("../../Results/example.csv");
+    } catch(std::exception &e) {
+        ExceptionHandler::handle(e);
+    }
 
     return 0;
 }

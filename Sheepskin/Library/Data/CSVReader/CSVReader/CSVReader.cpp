@@ -10,6 +10,7 @@
 
 //template <class ...Types>
 //CSVReader<Types...>::CSVReader(std::string filename): filename(filename) {};
+#include "../../../Exceptions/InvalidFormatException.h"
 
 CSVResult CSVReader::read(std::string filepath) {
     std::ifstream file;
@@ -21,6 +22,9 @@ CSVResult CSVReader::read(std::string filepath) {
 
     std::vector<std::vector<std::string>> columns(split(header).size());
     while(std::getline(file, line)) {
+        if(split(line).size() != split(header).size()) {
+            throw InvalidFormatException();
+        }
         for(int i = 0 ; i < split(line).size(); i++) {
               columns[i].emplace_back(split(line)[i]);
         }

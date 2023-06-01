@@ -15,7 +15,6 @@ void Orchestrator::setup(std::string filename) {
     Mapper mapper;
     auto instruments = mapper.mapToInstruments(result);
     Orchestrator::instruments = instruments;
-    std::cout << instruments.size();
 }
 
 void Orchestrator::run() {
@@ -36,7 +35,6 @@ std::vector<Estimation> Orchestrator::getEstimations() {
 void Orchestrator::save(std::string filename) {
     // TODO
     CSVWriter<Estimation> writer(std::move(filename), getEstimations());
-    std::cout << "Am here";
 
     writer.write();
 }

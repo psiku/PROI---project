@@ -23,6 +23,8 @@ public:
         //@param record - record which will be used to calculate mean
         //@return mean of the vector of Records
         double calculateMean(const Record &record);
+
+    std::string getType() const;
 };
 
 

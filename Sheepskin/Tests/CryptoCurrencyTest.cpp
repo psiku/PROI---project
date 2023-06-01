@@ -16,3 +16,8 @@ TEST(CryptoCurrencyTest, getPriceTest) {
 
     ASSERT_FLOAT_EQ(result, 38050.00);
 }
+TEST(CryptoCurrencyTest, getType) {
+    CryptoCurrency cryptoCurrency("id");
+
+    ASSERT_EQ(cryptoCurrency.getType(), "crypto");
+}

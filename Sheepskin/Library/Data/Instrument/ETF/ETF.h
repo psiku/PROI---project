@@ -18,6 +18,8 @@ public:
     //@param record - record which will be used to calculate price
     //@return price of the ETF
     double getPrice(const Record &record) override;
+
+    std::string getType() const;
 };
 
 

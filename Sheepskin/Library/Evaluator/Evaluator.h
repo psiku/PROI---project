@@ -10,12 +10,13 @@
 #include "../Strategies/Strategy/StrategyType.h"
 
 class Evaluator {
-private:
-    static StrategyType chose(Instrument *instrument);
 public:
     Evaluator() = default;
-    void handle(Context* context, Instrument *instrument);
+    void handle(Context *context, Instrument *instrument);
+
+    static std::vector<long> getTimestamps();
+    static long getTimestampMedian();
+    static StrategyType chose(Instrument *instrument);
 };
 
-
-#endif //SHEEPSKIN_EVALUATOR_H
+#endif  // SHEEPSKIN_EVALUATOR_H

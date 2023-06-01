@@ -7,6 +7,8 @@
 
 #include <exception>
 
+// Class InvalidFormatException is an exception which is thrown when format of the csv file is invalid
+// it is derived from std::exception
 class InvalidFormatException: public std::exception {
 public:
     const char* what() const throw() {

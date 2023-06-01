@@ -8,6 +8,8 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "../../../../Library/Data/Instrument/Instrument/Instrument.h"
+#include "../CSVResult/CSVResult.h"
 
 class Mapper {
 public:

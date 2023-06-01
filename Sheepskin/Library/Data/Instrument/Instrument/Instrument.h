@@ -22,7 +22,6 @@ public:
     explicit Instrument(std::string id);
     std::string getId() const;
     virtual std::string getType() const;
-
     // addRecord method add record to the vector<Records> in Instrument
     //@param record - record which will be added to the vector<Records> in Instrument
     void addRecord(const Record& record);

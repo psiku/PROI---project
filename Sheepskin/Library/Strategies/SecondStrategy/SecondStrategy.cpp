@@ -7,10 +7,6 @@
 
 SecondStrategy::SecondStrategy(Instrument* instrument) : Strategy(instrument) {}
 
-Forecast SecondStrategy::eval() {
-    return {0.8, 0., 0.0};
-}
-
 
 double SecondStrategy::getAverageTimestamp() {
     std::vector<time_t> timestamps;
@@ -49,7 +45,7 @@ std::vector<Period> SecondStrategy::splitByFibonacci() {
             periodRecords.push_back(records[begin]);
         }
 
-        if(periodRecords.size() > 0) periods.emplace_back(periodRecords);
+        if(periodRecords.size() > 0) periods.emplace_back(periodRecords, actual);
 
         counter++;
     }
@@ -57,3 +53,46 @@ std::vector<Period> SecondStrategy::splitByFibonacci() {
     return periods;
 }
 
+double SecondStrategy::getPeriodAveragePriceChange(Period period) {
+    long sum, count = 0;
+    int counter = 1;
+
+    auto records = period.getRecords();
+    for(long element = 1; element < records.size(); element++) {
+        double first = Strategy::getInstrument()->getPrice(records[element - 1]);
+        double second = Strategy::getInstrument()->getPrice(records[element]);
+
+        sum += counter * (second - first);
+        count += counter++;
+    }
+
+    return (double)sum / (double)count;
+}
+
+Stage SecondStrategy::calculatePeriodStage(Period period) {
+    double change = getPeriodAveragePriceChange(period);
+
+    if(std::abs(change) < 0.5) return Stage::Maintaining;
+    if(change < 0) return Stage::Falling;
+    return Stage::Rising;
+}
+
+double SecondStrategy::getAverageStage(std::vector<Period> periods, Stage stage) {
+    long sum = 0, count = 0;
+    for(auto period : periods) {
+        auto periodStage = calculatePeriodStage(period);
+
+        count += period.getWeight();
+
+        if(periodStage != stage) continue;
+
+        sum += period.getWeight();
+    }
+
+    return (double)sum / (double)count;
+}
+
+Forecast SecondStrategy::eval() {
+    auto periods = splitByFibonacci();
+    return {getAverageStage(periods, Stage::Falling), getAverageStage(periods, Stage::Maintaining), getAverageStage(periods, Stage::Rising)};
+}

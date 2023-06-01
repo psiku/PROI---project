@@ -19,7 +19,6 @@ TEST(SecondStrategyTests, SplitByFibonacciTest)
     instrument.addRecord({8, 0, 0, 0, 0, 0});
     instrument.addRecord({9, 0, 0, 0, 0, 0});
 
-
     SecondStrategy strategy(&instrument);
 
     auto result = strategy.splitByFibonacci();

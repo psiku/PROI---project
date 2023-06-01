@@ -17,9 +17,9 @@ public:
 
     double getAverageTimestamp();
     std::vector<Period> splitByFibonacci();
-    double getPeriodAveragePriceChange(std::vector<Period> periods);
+    double getPeriodAveragePriceChange(Period periods);
     Stage calculatePeriodStage(Period period);
-    double getAverageStage(std::vector<Stage> stages);
+    double getAverageStage(std::vector<Period> periods, Stage stage);
 };
 
 

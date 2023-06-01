@@ -12,9 +12,11 @@ struct Period {
 
 private:
     std::vector<Record> records;
+    long weight = 0;
+
 
 public:
-    Period(std::vector<Record> records) : records(records) {}
+    Period(std::vector<Record> records, long weight) : records(records), weight(weight) {}
 
     time_t to() const {
         return std::max_element(records.begin(), records.end(), [&](const Record& a, const Record& b){ return a.date < b.date; })->date;
@@ -25,7 +27,7 @@ public:
     }
 
     std::vector<Record> getRecords() const { return records; }
-
+    long getWeight() const { return weight; }
 };
 
 #endif //SHEEPSKIN_PERIOD_H

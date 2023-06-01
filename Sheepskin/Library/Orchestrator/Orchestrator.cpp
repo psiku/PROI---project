@@ -12,6 +12,7 @@ void Orchestrator::setup(std::string filename) {
     CSVResult result = reader.read(filename);
     Mapper mapper;
     std::vector<Instrument*> instruments = mapper.mapToInstruments(result);
+    this->instruments = instruments;
 }
 
 void Orchestrator::run() {

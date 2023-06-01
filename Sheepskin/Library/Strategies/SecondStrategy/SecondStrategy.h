@@ -9,6 +9,7 @@
 #include "../Strategy/Strategy.h"
 #include "Stage.h"
 #include "Period.h"
+#include <cmath>
 
 class SecondStrategy: public Strategy  {
 public:

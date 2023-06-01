@@ -7,6 +7,8 @@
 
 #include <exception>
 
+// Class InvalidDataException is an exception which is thrown when data provided in file are invalid
+// it is derived from std::exception
 class InvalidDataException: public std::exception {
 public:
     const char* what() const throw() {

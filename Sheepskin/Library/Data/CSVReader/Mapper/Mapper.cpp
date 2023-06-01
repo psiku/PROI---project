@@ -83,6 +83,5 @@ std::vector<Instrument*> Mapper::mapToInstruments(CSVResult result) {
     for(auto const& key: instruments) {
         res.emplace_back(key.second);
     }
-    std::cout << res[0]->getRecords().size() <<  " ";
     return res;
 }

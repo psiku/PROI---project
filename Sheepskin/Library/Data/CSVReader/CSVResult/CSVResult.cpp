@@ -3,7 +3,6 @@
 //
 
 #include "CSVResult.h"
-#include "../Mapper/Mapper.h"
 //#include "Data/Record/Record.h"
 
 #include <utility>

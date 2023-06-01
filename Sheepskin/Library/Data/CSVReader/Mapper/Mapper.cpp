@@ -1,38 +1,16 @@
 //
 // Created by Wiktor Kruszewicz on 18/05/2023.
 //
-
-#ifndef SHEEPSKIN_MAPPER_H
-#define SHEEPSKIN_MAPPER_H
-
-#include <string>
-#include <vector>
-#include <map>
-#include "../../../../Library/Data/Instrument/Instrument/Instrument.h"
-#include "../CSVResult/CSVResult.h"
-
-class Mapper {
-public:
-//    Mapper();
-    Mapper() = default;
-    std::vector<Instrument*> mapToInstruments(CSVResult);
-    template <class T>
-    T translate(std::string val);
-};
-//#include "Mapper.cpp"
-//
-// Created by Wiktor Kruszewicz on 18/05/2023.
-//
+#include "Mapper.h"
 #include <iostream>
 #include <sstream>
 #include <iomanip>
 #include <utility>
 #include <string>
 #include <vector>
-#include "../../../../Library/Data/Instrument/ETF/ETF.h"
-#include "../../../../Library/Data/Instrument/CryptoCurrency/CryptoCurrency.h"
-#include "../../../../Library/Data/Instrument/Stock/Stock.h"
-//#include "Mapper.h"
+#include "../../Instrument/ETF/ETF.h"
+#include "../../Instrument/CryptoCurrency/CryptoCurrency.h"
+#include "../../Instrument/Stock/Stock.h"
 
 template <>
 int Mapper::translate<int>(std::string val) {
@@ -108,5 +86,3 @@ std::vector<Instrument*> Mapper::mapToInstruments(CSVResult result) {
 
     return res;
 }
-
-#endif //SHEEPSKIN_MAPPER_H

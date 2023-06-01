@@ -15,12 +15,11 @@ private:
     int index = 0;
     std::vector<std::vector<std::string>> data;
 public:
-    bool end();
-    std::vector<std::string> getRow();
     CSVResult() = default;
     explicit CSVResult(std::vector<std::vector<std::string>> data): data(std::move(data)) {};
-};
 
-#include "CSVResult.cpp"
+    bool end();
+    std::vector<std::string> getRow();
+};
 
 #endif //SHEEPSKIN_CSVRESULT_H

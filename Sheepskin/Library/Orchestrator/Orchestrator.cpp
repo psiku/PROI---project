@@ -4,7 +4,8 @@
 
 #include "Orchestrator.h"
 #include "../Evaluator/Evaluator.h"
-#include "../../ConsoleApp/Data/CSVReader/CSVReader/CSVReader.h"
+#include "../Data/CSVReader/CSVReader/CSVReader.h"
+#include "../Data/CSVReader/Mapper/Mapper.h"
 
 void Orchestrator::setup(std::string filename) {
     // TODO

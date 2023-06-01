@@ -7,10 +7,9 @@
 
 #include <string>
 #include <fstream>
-#include "../../../../Library/Data/Instrument/Instrument/Instrument.h"
+#include "../../Instrument/Instrument/Instrument.h"
 #include "../CSVResult/CSVResult.h"
 
-template <class ...Types>
 class CSVReader {
 private:
     std::ifstream file;
@@ -36,5 +35,4 @@ public:
 };
 
 
-#include "CSVReader.cpp"
 #endif //SHEEPSKIN_CSVREADER_H

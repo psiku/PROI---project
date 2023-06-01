@@ -7,13 +7,11 @@
 #include <fstream>
 
 #include "CSVReader.h"
-#include "../Mapper/Mapper.h"
 
 //template <class ...Types>
 //CSVReader<Types...>::CSVReader(std::string filename): filename(filename) {};
 
-template <class ...Types>
-CSVResult CSVReader<Types...>::read(std::string filepath) {
+CSVResult CSVReader::read(std::string filepath) {
     std::ifstream file;
     file.open(filepath);
 
@@ -31,8 +29,7 @@ CSVResult CSVReader<Types...>::read(std::string filepath) {
 //    return result;
 }
 
-template <class ...Types>
-std::vector<std::string> CSVReader<Types...>::split(std::string line) {
+std::vector<std::string> CSVReader::split(std::string line) {
     std::vector <std::string> ans;
 
     std::string curr_val;

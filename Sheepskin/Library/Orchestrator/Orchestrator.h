@@ -14,7 +14,7 @@ private:
     std::vector<Estimation> estimations;
 
 public:
-    explicit Orchestrator();
+    explicit Orchestrator() {}
     explicit Orchestrator(std::vector<Instrument*> instruments) : instruments(instruments) {}
 
     void setup(std::string filename);

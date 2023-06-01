@@ -4,8 +4,8 @@
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
-#include "../ConsoleApp/Data/CSVReader/Mapper/Mapper.h"
-#include "../ConsoleApp/Data/CSVReader/CSVReader/CSVReader.h"
+#include "Data/CSVReader/Mapper/Mapper.h"
+#include "Data/CSVReader/CSVReader/CSVReader.h"
 
 TEST(CSVTests, MapperStringTest) {
     std::vector<std::string> vec;

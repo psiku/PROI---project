@@ -6,7 +6,7 @@ The Sheepskin Algorithm is a team project for object-oriented programming classe
 
 # Team
 
-- Grzegorz Statkiewicz (team leader 🥵)
+- Grzegorz Statkiewicz (team leader )
 - Wiktor Kruszewicz
 - Bartosz Psik
 
